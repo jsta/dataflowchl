@@ -1,0 +1,201 @@
+---
+title: "Investigating phytoplankton bloom status and community composition with optical phytopigment mapping"
+author: "Joseph Stachelek"
+date: "August 4, 2015"
+output: html_document
+nocite: |
+  @glibert_florida_2009, @glibert_evidence_2004, @phlips_blooms_1999, @phlips_spatial_1996, @seppala_ship_opportunity_2007, @boyer_phytoplankton_2009, @briceno_climatic_2009
+bibliography: tex/stachmad.bib
+---
+
+```{r eval=TRUE,echo=FALSE}
+library(DataflowR)
+library(knitr)
+fdir<-getOption("fdir")
+
+library(captioner)
+fig_nums<-captioner()
+table_nums<-captioner(prefix = "Table")
+```
+
+
+#Introduction
+
+Algal bloom formation has been variously ascribed to climate [@briceno_climatic_2009], tropical storms, and water management activities. Subsequent bloom behavior is thought to be controlled by complex internal feedback that involve benthic-pelagic coupling with seagrass and filter feeder grazing [@peterson_potential_2006].
+
+Previous studies have examined spatial patterning and chlorophyll trends in Florida Bay . However, these studies used data from a distributed network of discrete sample sites. As a result, their findings provide a relatively coarse perspective (5-10 km). In this paper, we describe the spatial dynamics of chlorophyll in Florida Bay at the fine scale (<1 km) by spatially interpolating underway measurements from an onboard flow-through water analysis system (Dataflow). Chlorophyll concentrations are regarded as a proxy for phytoplankton biomass. In addition to basic ecological insight, knowledge of fine scale patterning is important in a variety of management contexts including delineating management zones [@mfl_2014] and defining impact thresholds [@boyer_phytoplankton_2009]. 
+
+#Methods
+
+##Site Description
+
+Florida Bay is a large, shallow embayment at the southern tip of the Florida peninsula. It is composed of a series of basins that are hydrologically isolated from each other by islands and shallow mud banks. The climatology of Florida Bay is characterized by a distinct wet season from May to late October and a dry season from November to April. The impact of tropical storms and hurricanes is centered around the late wet season. 
+Hydrologic isolation and long residence times often create a reservoir effect superimposed on existing salinity and nutrient gradients. The Florida Bay salinity gradient extends from the northeastern embayments fed by the Everglades wetlands to the Atlantic Ocean and Gulf of Mexico to the south and southwest respectively. In contrast to an idealized estuary, Florida Bay is characterized by an "upside-down" nutrient gradient where nutrients (especially phosphorus) are low in the estuary headwaters relative to the estuary terminus [@childers_relating_2006]. 
+
+Median chlorophyll concentrations throughout much of eastern and Florida Bay and Southern Biscayne Bay are at or below 1.0 ug/L [@boyer_phytoplankton_2009 @briceno_climatic_2009]. When they occur, blooms are mostly composed of cyanobacteria [@phlips_blooms_1999].
+
+##Field Data Collection
+
+Field measurements were collected using a Dataflow onboard flow-through collection system. While underway, the Dataflow receives a continuous stream of water from an onboard pump. This water is routed through a series of sensors operating in flow through mode. These sensors measure the physical, chemical, and optical properties of the water. The Dataflow sensor package includes probes to measure CDOM, phycocyanin, phyoerytherin, turbidity, and chlorophyll fluoresence where excitation/emmission wavelengths were set at 325/470, 595/630, 515/590, 850/850, and 465/696 respectively (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). In addition, the Dataflow includes sensors to measure electrical conductivity, and temperature. Each measurement is georeferenced by an onboard GPS unit.
+
+Each streaming dataset is supplemented by a set of discrete grab samples (n~10). These samples are collected from the Dataflow outflow hose while underway. Discrete grab samples are analyzed for chlorophyll concentration, total suspended solids, as well as a suite of organic and inorganic nutrient species. 
+
+##Statistical Analysis
+
+For each survey, we regressed the chlorophyll concentration of the discrete grab samples against the corresponding optical measurements from the Dataflow. Initial regressions included all available optical measurements. These "full" models were subject to a model selection procedure using AIC. Several models with the lowest AIC values were further investigated to examine normality of residuals, avoid multicolliniarity, and check that individual coefficients had the appropriate sign.  
+
+Final models were applied to the full streaming dataset in order to estimate chlorophyll concentration in areas where discrete grab samples were not collected. Calculated concentrations that exceeded the maximum concentration in the "training" sample set were discarded (this avoided model extrapolation). The resulting georeferenced chlorophyll concentration dataset was spatially interpolated according to the methods presented in [@stachelek_application_2015]. 
+
+Interpolated chlorophyll estimates were quantitatively checked against independent DBHYDRO chlorophyll concentrations. Unfortunately, the timing of these measurements did not exactly match the dates of Dataflow surveys. We restricted our quantitative comparisons to surveys when DBHYDRO samples were collected within 4 days from the date of a Dataflow survey. This four day window was chosen because the temporal autocorrelation of salinity data from USGS platforms (Trout Creek) decreases markedly beyond a 3 day lag.
+
+# Results and Discussion
+
+* The highest chlorophyll concentrations observed during the study period were in the central bay during October 2012 (`r fig_nums("chltimeseries",display="cite")`). Dataflow surveys reveal that overall chlorophyll concentrations are especially high in Central Florida Bay and the 7 Palm Chain of Lakes (`r fig_nums("multipanel",display="cite")`).
+
+* With the exception of October 2009, the root mean squared error of chlorophyll concentration estimates were less than 1 ug/L (`r table_nums("dbhydrovalid",display="cite")`). 
+
+* Apparent patterns in `r fig_nums("multipanel",display="cite")` are probably realistic on the km scale but not necessarily on the m scale. This is due to a measure of coarseness required by the procedure described by @stachelek_application_2015.
+
+* Phycocynanin fluoresence made a larger contribution to chlorophyll models during the early and late dry season (`r table_nums("modelfits",display="cite")`). 
+    * This is consistent with the findings of @briceno_climatic_2009 who found a bimodal CHLA distribution with peaks in October-December and March.
+    * This bimodal CHLA distribution might arise because of nutrient injection from tropical storms or early wet season rainfall events.
+    * How does this relate to the interplay between domination by local processes in the dry season and regional climate processes in the wet season? (see @childers_relating_2006).
+    &nbsp;
+
+* The annual chlorophyll peak in central Florida Bay occurs in the transition from late wet season to early dry season.
+    * This is consistent with @briceno_climatic_2009 who found that maximum bloom activity was from July to January.
+
+#Figures and Tables
+
+```{r eval=TRUE, echo=FALSE, fig.width=5, fig.height=3.5, fig.align="center"}
+  fig_nums("chltimeseries","Time series of average chlorophyll concentration within Florida Bay water quality zones.",display = FALSE)
+  
+  source(file.path("/home","jose","Documents","Science","Data","ENP_MMN","pull_mmndbhydro.R"))
+
+dt<-update_mmn(legacypath=legacypath,update=FALSE,tofile=FALSE)
+dt$collection.date<-as.POSIXct(dt$collection.date)
+dtfull<-dt[dt$collection.date>="1993-01-01",]
+dtsub<-dt[dt$collection.date>="2008-01-01",]
+
+testfull<-suppressWarnings(aggregate(dtfull,by=list(Dates=dtfull$date, Zone=dtfull$zone),mean)[,c("chl.a.ug.l","collection.date","Zone")])
+testsub<-suppressWarnings(aggregate(dtsub,by=list(Dates=dtsub$date, Zone=dtsub$zone),mean)[,c("chl.a.ug.l","collection.date","Zone")])
+
+library(ggplot2)
+
+suppressWarnings(ggplot(data = testfull, aes(x=collection.date,y=chl.a.ug.l,colour=Zone)) + geom_line() + suppressWarnings(geom_point(na.rm = TRUE)) + theme_bw() + labs(x="",y="Chlorophyll a (ug/L)") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text=element_text(size = 12), axis.title = element_text(size = 14, face = "bold"), legend.position = c(0.1,0.8)))
+
+```
+  **`r fig_nums("chltimeseries")`**
+  
+```{r eval=TRUE,echo=FALSE}
+  fig_nums("multipanel","Chlorophyll concentration calculated according to the equations in Table 1. Note that the color ramp is log-scaled.",display = FALSE)
+```
+![](multipanel.png)
+**`r fig_nums("multipanel")`**
+
+```{r eval=TRUE,echo=FALSE}
+fig_nums("chlbarplot","Chlorophyll concentrations within individual Florida Bay basins. Data shown includes discrete samples (color one) and fitted streaming data (color two).",display=FALSE)
+
+dt<-read.csv(file.path(fdir,"DF_GrabSamples","extractChlcoef2.csv"),row.names = NULL)
+dt<-dt[!is.na(dt$date),]
+dt<-dt[order(dt$yearmon),]
+goodyears<-dt$yearmon
+
+dt<-grabget(rnge=c(goodyears[1],goodyears[length(goodyears)]),remove.flags = TRUE)
+
+#classify according to FATHOM BASIN
+  library(sp)
+  projstr<-"+proj=utm +zone=17 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
+  latlonproj<-"+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+  fathombasins<-rgdal::readOGR(file.path(fdir,"DF_Basefile/fbzonesmerge.shp"),layer="fbzonesmerge",verbose=FALSE,stringsAsFactors=FALSE)
+  fboutline<-rgdal::readOGR(file.path(fdir,"DF_Basefile","FBcoast_dissolve.shp"),layer="FBcoast_dissolve",verbose=FALSE,stringsAsFactors=FALSE)
+  
+  dt<-dt[!is.na(dt$lat_dd),]
+  coordinates(dt)<-~lon_dd+lat_dd
+  sp::proj4string(dt)<-sp::CRS(latlonproj)
+  dt<-sp::spTransform(dt,sp::CRS(projstr))
+  fathomnames<-sp::over(dt,fathombasins[,1])
+  dt<-cbind(data.frame(dt),data.frame(fathomnames))
+  dt<-dt[!is.na(dt$ZoneName),]
+  dt<-dt[dt$ZoneName %in% names(table(dt$ZoneName))[table(dt$ZoneName)>5],]
+  coordinates(dt)<-~lon_dd+lat_dd
+  
+  fathombasins<-fathombasins[(fathombasins$ZoneName %in% unique(dt$ZoneName)),]
+  
+  fboutline@data$id<-rownames(fboutline@data)
+  fboutline.points<-ggplot2::fortify(fboutline,region = "id")
+  fboutline.df<-plyr::join(fboutline.points,fboutline@data,by="id")
+  
+  ##gg<-ggplot2::ggplot(fboutline)+ggplot2::aes(long,lat,group=group)+ggplot2::geom_polygon()
+  
+  fathombasins<-ggplot2::fortify(fathombasins,region = "ZoneName")
+  fboutline<-ggplot2::fortify(fboutline,region = "Id")
+  
+  dt<-data.frame(dt)
+  dtmeans<-aggregate(dt[,c("chla","lon_dd","lat_dd")],by=list(dt$ZoneName),mean)
+  #dtmeans$chla<-aggregate(dt[,"chla"],by=list(dt$NAME),sd)$x
+  names(dtmeans)[1]<-"name"
+  dtmeans[,2]<-log(dtmeans[,2])
+  
+  #dtmeans$chla<-log(dtmeans$chla+1)
+  #mybreaks<-(seq(from=log(1),to=log(5),length=8))
+  library(ggplot2)
+  gg<-ggplot()
+  
+  gg<-gg + geom_map(data=dtmeans,map=fathombasins, aes(x=lon_dd,y=lat_dd,map_id=name,fill=chla),color="black")
+  gg<-gg + scale_fill_continuous(low="white",high="darkgreen",limits=c(0,max(dtmeans[,2])),na.value = "white")
+  gg<-gg + theme_bw() + theme(panel.grid.major = element_blank(),panel.grid.minor=element_blank())
+  
+  #gg<-ggplot(fboutline,aes(long,lat))+geom_polygon(aes_string(group="group",fill="id"))
+  
+   #  ggplot(fboutline.df,aes(long,lat,group=group))+geom_polygon()
+  
+  #gg
+  
+  #gg
+  
+  source("/home/jose/Documents/Science/Data/ENP_MMN/pull_mmndbhydro.R")
+  legacypath<-file.path("/home","jose","Documents","Science","Data","ENP_MMN","legacy","SFER_Data_Thru_April2015.csv")
+  dbhydt<-update_mmn(legacypath = legacypath,tofile = FALSE,update = FALSE)
+  
+  dt$date<-jsta::date456posix(dt$date,century="20")
+  dbhydt<-dbhydt[dbhydt$collection.date>min(dt$date)&dbhydt$collection.date<max(dt$date),]  
+  
+  #dt$date[which(!is.na(match(dt$date,dbhydt$collection.date)))]
+  
+```
+  **`r fig_nums("chlbarplot")`**
+
+```{r eval=TRUE,echo=FALSE}
+  fig_nums("concept","Conceptual model of phytoplankton seasonal dynamics in Florida Bay water quality zones.",display = FALSE)
+```
+**`r fig_nums("concept")`**
+
+\newpage
+
+```{r eval=TRUE,echo=FALSE}
+table_nums("modelfits","Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (r2) and p-value of each regression.",display=FALSE)
+```
+
+**`r table_nums("modelfits")`**
+```{r eval=TRUE,echo=FALSE}
+
+dt<-read.csv(file.path("tables","modelfits.csv"),row.names = NULL)
+kable(dt)
+
+```
+
+
+```{r eval=TRUE,echo=FALSE}
+table_nums("dbhydrovalid","Quantitative validation of chlorophyll concentration estimates against independent meaurements from the DBHYDRO database.",display=FALSE)
+```
+**`r table_nums("dbhydrovalid")`**
+```{r eval=TRUE,echo=FALSE}
+
+dt<-read.csv(file.path("tables","dbhydrovalid.csv"),row.names = NULL)
+kable(dt)
+
+```
+
+
+#References
