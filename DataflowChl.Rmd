@@ -1,8 +1,11 @@
 ---
-title: "Investigating phytoplankton bloom status and community composition with optical phytopigment mapping"
+title: Fine scale measures of phytoplankton bloom status and community composition
+  with optical phytopigment mapping
 author: "Joseph Stachelek"
 date: "August 4, 2015"
-output: html_document
+output: 
+  word_document:
+    reference_docx: "/home/jose/Documents/draft-styles.docx"
 nocite: |
   @glibert_florida_2009, @glibert_evidence_2004, @phlips_blooms_1999, @phlips_spatial_1996, @seppala_ship_opportunity_2007, @boyer_phytoplankton_2009, @briceno_climatic_2009
 bibliography: tex/stachmad.bib
@@ -36,7 +39,7 @@ Median chlorophyll concentrations throughout much of eastern and Florida Bay and
 
 ##Field Data Collection
 
-Field measurements were collected using a Dataflow onboard flow-through collection system. While underway, the Dataflow receives a continuous stream of water from an onboard pump. This water is routed through a series of sensors operating in flow through mode. These sensors measure the physical, chemical, and optical properties of the water. The Dataflow sensor package includes probes to measure CDOM, phycocyanin, phyoerytherin, turbidity, and chlorophyll fluoresence where excitation/emmission wavelengths were set at 325/470, 595/630, 515/590, 850/850, and 465/696 respectively (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). In addition, the Dataflow includes sensors to measure electrical conductivity, and temperature. Each measurement is georeferenced by an onboard GPS unit.
+Field measurements were collected using a Dataflow onboard flow-through collection system. While underway, the Dataflow receives a continuous stream of water from an onboard pump. This water is routed through a series of sensors operating in flow through mode. These sensors measure the physical, chemical, and optical properties of the water. The Dataflow sensor package includes probes to measure CDOM, phycocyanin, phyoerytherin, turbidity, and chlorophyll fluorescence where excitation/emission wavelengths were 325/470, 595/630, 515/590, 850/850, and 465/696 nm respectively (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). In addition, the Dataflow includes sensors to measure electrical conductivity, and temperature. Measurements are georeferenced by an onboard GPS unit.
 
 Each streaming dataset is supplemented by a set of discrete grab samples (n~10). These samples are collected from the Dataflow outflow hose while underway. Discrete grab samples are analyzed for chlorophyll concentration, total suspended solids, as well as a suite of organic and inorganic nutrient species. 
 
@@ -69,23 +72,9 @@ Interpolated chlorophyll estimates were quantitatively checked against independe
 
 ```{r eval=TRUE, echo=FALSE, fig.width=5, fig.height=3.5, fig.align="center"}
   fig_nums("chltimeseries","Time series of average chlorophyll concentration within Florida Bay water quality zones.",display = FALSE)
-  
-  source(file.path("/home","jose","Documents","Science","Data","ENP_MMN","pull_mmndbhydro.R"))
-
-dt<-update_mmn(legacypath=legacypath,update=FALSE,tofile=FALSE)
-dt$collection.date<-as.POSIXct(dt$collection.date)
-dtfull<-dt[dt$collection.date>="1993-01-01",]
-dtsub<-dt[dt$collection.date>="2008-01-01",]
-
-testfull<-suppressWarnings(aggregate(dtfull,by=list(Dates=dtfull$date, Zone=dtfull$zone),mean)[,c("chl.a.ug.l","collection.date","Zone")])
-testsub<-suppressWarnings(aggregate(dtsub,by=list(Dates=dtsub$date, Zone=dtsub$zone),mean)[,c("chl.a.ug.l","collection.date","Zone")])
-
-library(ggplot2)
-
-suppressWarnings(ggplot(data = testfull, aes(x=collection.date,y=chl.a.ug.l,colour=Zone)) + geom_line() + suppressWarnings(geom_point(na.rm = TRUE)) + theme_bw() + labs(x="",y="Chlorophyll a (ug/L)") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text=element_text(size = 12), axis.title = element_text(size = 14, face = "bold"), legend.position = c(0.1,0.8)))
-
 ```
-  **`r fig_nums("chltimeseries")`**
+  ![](figures/chltimeseries.png)  
+**`r fig_nums("chltimeseries")`**
   
 ```{r eval=TRUE,echo=FALSE}
   fig_nums("multipanel","Chlorophyll concentration calculated according to the equations in Table 1. Note that the color ramp is log-scaled.",display = FALSE)
