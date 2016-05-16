@@ -11,7 +11,7 @@ raindar$date <- as.POSIXct(strptime(paste0(raindar$date, "-01"), format = "%Y-%m
 
 #load gage data
 gage <- read.csv(file.path("data", "rain", "ENPOps_rain.csv"))
-gage <- gage[,c("date","TaylorSlough", "C.111.basin")]
+gage <- gage[,c("date", "TaylorSlough", "C.111.basin")]
 gage$date <- as.POSIXct(strptime(gage$date, format = "%m/%d/%Y"))
 gage$date <- as.character(strftime(gage$date, format = "%Y-%m"))
 
