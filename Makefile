@@ -28,13 +28,13 @@ data: data/goodyears.csv data/allstreaming.csv data/allgrabs.csv ## copy data fr
 	@echo "data pulled"
 
 data/goodyears.csv: ## listing of surveys with good spatial coverage
-	Rscript -e "source('R/goodyears.R')"	
+	Rscript -e "source('code/goodyears.R')"	
 
 data/allstreaming.csv: ## move streaming data from archive folder
-	Rscript -e "source('R/allstreaming.R')"	
+	Rscript -e "source('code/allstreaming.R')"	
 
-data/allgrabs.csv: ## move grab data from archive folder
-	Rscript -e "source('R/allgrabs.R')"	
+data/allgrabs.csv: code/allgrabs.R ## move grab data from archive folder
+	Rscript -e "source('code/allgrabs.R')"	
 
 data/dbhydt.csv: ## update DBHYDRO subset and move to local folder
 	cd /home/jose/Documents/Science/Data/WQMN/ && Rscript -e "remake::make('updateddb.csv')" && rsync updateddb.csv /home/jose/Documents/Science/JournalSubmissions/DataflowChl/data 
@@ -43,7 +43,9 @@ data/dbhydt.csv: ## update DBHYDRO subset and move to local folder
 data/modelfits.csv: /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv ## move model fit info from archive folder
 	rsync /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv data    
 	mv data/extractChlcoef2.csv data/modelfits.csv
-	
+
+data/flow/ENPOps_flow.csv: ## pull USGS flow data from NWIS
+	Rscript code/pull_usgs_flow.R
 
 # figures #######################################################
 
