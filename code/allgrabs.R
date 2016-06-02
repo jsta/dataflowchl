@@ -4,7 +4,8 @@ fathombasins <- rgdal::readOGR(file.path(fdir, "DF_Basefile/fbzonesmerge.shp"),l
 goodyears <- read.csv("data/goodyears.csv", stringsAsFactors = FALSE)
 goodyears <- as.list(as.data.frame(t(goodyears)))
 
-dt <- lapply(goodyears, function(x) grabget(x))
+dt <- lapply(goodyears, function(x) grabclean(x, tofile = FALSE))
+#dt <- lapply(goodyears, function(x) grabget(x))
 dt <- do.call("rbind", dt)
 dt <- dt[!is.na(dt$lon_dd) & !is.na(dt$lat_dd),]
 dt <- dt[dt$location %in% methods::slot(fathombasins, "data")$ZoneName,]
@@ -12,7 +13,7 @@ dt <- dt[dt$location %in% methods::slot(fathombasins, "data")$ZoneName,]
 grabs <- dt
 grabs <- grabs[!(grabs$location %in% c("Deer Key", "Taylor River")),]
 
-grabs$tn <- grabs$tkn + grabs$tdkn
+grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000)+ grabs$n.num # tkn is all org. n
 grabs <- grabs[,!(names(grabs) %in% c("tkn", "tdkn"))]
 
 # fit distribution to PO4 to fill in zeros following Helsel and Hirsh ch. 13
@@ -34,14 +35,19 @@ get_lowerquantile <- function(quant){
 lessthan_detect_limit <- grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"]
 grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"] <- exp(sapply(1:length(lessthan_detect_limit), function(x) get_lowerquantile(.1)))
 
+grabs$np_ratio <- grabs$tn / grabs$tp
+
+grabs[grabs$pp < 0.05 & !is.na(grabs$pp), "pp"] <-  NA# made-up detection limit
+grabs[grabs$tdp > 1.4 & !is.na(grabs$tdp), "tdp"] <-  NA# made-up detection limit
+grabs[grabs$np_ratio > 800& !is.na(grabs$np_ratio), "np_ratio"] <-  NA# made-up detection limit
+
+
+
+
 write.csv(grabs, "data/allgrabs.csv", row.names = FALSE)
 
 grabs$chla <- log(grabs$chla)
-
-grabs[grabs$pp < 0.05 & !is.na(grabs$pp), "pp"] <-  NA# made-up detection limit
 grabs$pp <- log(grabs$pp)
-
-
 grabs$tp <- log(grabs$tp)
 grabs$po4 <- log(grabs$po4)
 grabs$tdp <- log(grabs$tdp)
