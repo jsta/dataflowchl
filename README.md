@@ -9,6 +9,7 @@
  * cowplot
  * viridis
  * sp
+ * remake
 
 ## Build
 `$ make help`

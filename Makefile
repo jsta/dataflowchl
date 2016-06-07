@@ -79,7 +79,7 @@ figures/chlboxplot.png: ## create chlorophyll boxplot
 figures/nonchlboxplot.png: ## create non-chlorophyll boxplot
 	Rscript R/nonchlboxplot.R
 
-figures/chltimeseries.png: ## create chlorophyll time-series plot 
+figures/chltimeseries.png: data/dbhydt.csv code/chltimeseries.R ## create chlorophyll time-series plot 
 	Rscript code/chltimeseries.R
 
 # manuscript #######################################################
