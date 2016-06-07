@@ -61,8 +61,14 @@ figures/multipanel_mb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed t
 figures/multipanel_jb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed to Joe Bay
 	Rscript --default-packages=methods,utils code/multipanel_jb.R	
 
-figures/fbmap.png: ## create Florida Bay basemap with station points
+figures/fbmap_dflow.png: ## create Florida Bay basemap with dflow grab points
 	Rscript code/fbmap.R
+
+figures/fbmap_wqmn.png: ## create Florida Bay basemap with wqmn grab points
+	Rscript code/fbmap.R
+
+figures/fbmap.png: figures/fbmap_wqmn.png figures/fbmap_dflow.png ## create 2 panel Florida Bay basemap with grab points
+	montage figures/fbmap_dflow.png figures/fbmap_wqmn.png -geometry +2+2 -tile x2 figures/fbmap.png
 
 figures/rain.png: data/rain/NexradRainData.txt ## create rain time-series figure
 	Rscript R/rain.R

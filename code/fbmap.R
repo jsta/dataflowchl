@@ -4,6 +4,7 @@ library(methods)
 library(ggsn)
 library(maptools)
 
+# Initial Set-up####
 theme_opts <- list(ggplot2::theme(
   panel.grid.minor = ggplot2::element_blank(),
   panel.grid.major = ggplot2::element_blank(),
@@ -48,7 +49,7 @@ names(zone_poly_centroids) <- c("ZoneName", "long", "lat")
 zone_poly_centroids[,2:3] <- apply(zone_poly_centroids[,2:3], 2, function(x) as.numeric(as.character(x)))
 zone_poly <- ggplot2::fortify(zone_poly, region = "zonename")
 
-#===============================================================#
+## WQMN Grab Map ####
 gg <- ggplot()
 gg <- gg + geom_rect(aes(xmin = 515000, xmax = 568000, ymin = 2770000, ymax = 2800000), linetype = 1, colour = "black", fill = "white")
 gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(x = long, y = lat, map_id = id), color = "black", alpha = 0.8)
@@ -56,7 +57,10 @@ gg <- gg + geom_map(data = zone_poly, map = zone_poly, aes(x = long, y = lat,  m
 gg <- gg + geom_text(data = zone_poly_centroids, aes(label = ZoneName, x = long, y = lat), size = 4, color = "red", fontface = "bold", position = position_nudge(y = 900))
 gg <- gg + geom_point(data = data.frame(coordinates(coordinatize(dbhydro_grabs))), aes(x = londec, y = latdec), size = 2, fill = "red", color = "red")
 gg + theme_opts
-#===============================================================#
+
+ggsave("figures/fbmap_wqmn.png", width = 4, height = 3)
+
+## Dataflow Grab Map ####
 gg <- ggplot()
 gg <- gg + geom_rect(aes(xmin = 515000, xmax = 568000, ymin = 2770000, ymax = 2800000), linetype = 1, colour = "black", fill = "white")
 gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(x = long, y = lat, map_id = id), color = "black", alpha = 0.8)
@@ -68,9 +72,9 @@ gg <- gg + geom_point(data = fathombasins_centroids, aes(x = long, y = lat), siz
 
 gg + theme_opts + scalebar(dist = 10, location = "bottomright", st.size = 3, x.min = 515000, x.max = 565000, y.min = 2772200, y.max = 2800000)
 
-ggsave("figures/fbmap.png", width = 4, height = 3)
+ggsave("figures/fbmap_dflow.png", width = 4, height = 3)
 
-north(fboutline.df, location = "topleft", symbol = 1, scale = 0.2)
+ggsn::north(fboutline.df, location = "topleft", symbol = 1, scale = 0.2)
 #===============================================================#
 
 # library(sp)
