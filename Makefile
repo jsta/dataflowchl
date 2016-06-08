@@ -82,6 +82,11 @@ figures/nonchlboxplot.png: ## create non-chlorophyll boxplot
 figures/chltimeseries.png: data/dbhydt.csv code/chltimeseries.R ## create chlorophyll time-series plot 
 	Rscript code/chltimeseries.R
 
+figures/avmap.png: code/avmap.R ## create average chl and phycoc maps
+	Rscript code/avmap.R
+	montage chlext.png phycoc.png -geometry +2+2 -tile x2 figures/avmap.png
+	#rm tile.png chlext.png phycoc.png
+
 # manuscript #######################################################
 
 ms: data figures clean ## compile ms
