@@ -17,29 +17,41 @@ theme_opts <- list(ggplot2::theme(
   panel.background = ggplot2::element_blank(),
   plot.background = ggplot2::element_rect(fill="white"),
   panel.border = ggplot2::element_blank(),
-  axis.line = ggplot2::element_line(),
+  axis.line.y = ggplot2::element_line(),
+  axis.line.x = ggplot2::element_line(),
   axis.text.x = ggplot2::element_text(angle = 90, vjust = -0.0125),
   axis.text.y = ggplot2::element_text(),
   axis.ticks = ggplot2::element_line(),
   axis.title.x = ggplot2::element_blank(),
-  axis.title.y = ggplot2::element_text(),
-  plot.title = ggplot2::element_text(size=22),
+  axis.title.y = ggplot2::element_blank(),
+  plot.title = ggplot2::element_text(size=24),
   strip.background = ggplot2::element_rect(fill = 'white')))
 
-param_names <- c(
-  `pp` = "PP uM",
-  `tp` = "TP uM",
-  `tdp` = "TDP uM",
-  `po4` = "PO4 uM",
-  `tn` = "TN uM",
-  `np_ratio` = "N/P Ratio"
-)
+# param_names <- c(
+#   `pp` = "PP uM",
+#   `tp` = "TP uM",
+#   `tdp` = "TDP uM",
+#   `po4` = "PO4 uM",
+#   `tn` = "TN uM",
+#   `np_ratio` = "N/P Ratio"
+# )
 
-grabs$variable <- factor(grabs$variable, levels = c("pp", "tp", "tdp", "tn", "po4", "chla", "np_ratio"))
+param_names <- read.table(text="
+pp,PP (uM)
+tp,TP (uM)
+tdp,TDP (uM)
+po4,PO4 (uM)
+tn,TN (uM)
+np_ratio,'NP Ratio'", sep = ",", header = FALSE, col.names = c("variable", "variable_long"), stringsAsFactors = FALSE)
+param_names[,"variable_long"] <- gsub("u", "\U03BC", param_names[,2])
 
-gg <- ggplot(grabs[grabs$variable != "chla",], aes(x = location, y = value))
+grabs <- merge(grabs, param_names)
+
+grabs$variable_long <- factor(grabs$variable_long, levels = c("PP (\U03BCM)", "TP (\U03BCM)", "TDP (\U03BCM)", "TN (\U03BCM)", "PO4 (\U03BCM)", "chla", "NP Ratio"))
+
+gg <- ggplot(grabs[grabs$variable_long != "chla",], aes(x = location, y = value))
 gg <- gg + geom_boxplot(outlier.shape = NA)
-gg <-  gg + facet_wrap(~variable, scales = "free_y", ncol = 2, labeller = as_labeller(param_names)) + ylab("")
+gg <-  gg + facet_wrap(~variable_long, scales = "free_y", ncol = 2) + ylab("")
 gg <- gg + theme_opts
 gg
-ggsave("figures/nonchlboxplot.png", width = 4, height = 6)
+ggsave("figures/nonchlboxplot.png", width = 4.5, height = 6)

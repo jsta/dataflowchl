@@ -35,6 +35,9 @@ for(i in loop_ind){
 }
 
 res_table <- data.frame(table(do.call("c", res)))
-res_table$Freq <- res_table$Freq/length(res)
+res_table$Freq <- res_table$Freq / length(res)
 res_table <- res_table[res_table$Freq > percent_cutoff,]
-plot(template_dt[res_table[,1],], main = paste(percent_cutoff, zero_cutoff)
+plot(template_dt[res_table[,1],], main = paste(percent_cutoff, zero_cutoff))
+
+# fit clustering algorithm to point wq data to delinate zones
+
