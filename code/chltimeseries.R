@@ -6,7 +6,7 @@ dt$collection.date <- as.POSIXct(dt$collection.date)
 dtfull <- dt[dt$collection.date >= "1993-01-01",]
 dtsub <- dt[dt$collection.date >= "2008-01-01" & dt$collection.date <= "2015-09-30",]
 
-browser()
+
 testfull <- suppressWarnings(aggregate(dtfull, by = list(Dates = dtfull$collection.date, Zone = dtfull$zone), mean)[,c("chl.a.ug.l", "collection.date", "Zone")])
 testsub <- suppressWarnings(aggregate(dtsub, by = list(Dates = dtsub$collection.date, Zone = dtsub$zone), mean)[,c("chl.a.ug.l", "collection.date", "Zone")])
 
@@ -41,7 +41,7 @@ plot_rain <- plot_rain + geom_line(na.rm = TRUE) + geom_point(na.rm = TRUE) + xl
 ## Figure montage + save ===================================#
 png(filename = "figures/chltimeseries.png",width=1120, height =1400, res = 300)
 
-plot_grid(plotfull, plotsub, plot_rain, align = "v", ncol = 1, labels = c("A","B", "C"), hjust = -47, vjust = 3.5)
+plot_grid(plotfull, plotsub, plot_rain, align = "v", ncol = 1, labels = c("A","B", "C"), hjust = -47, vjust = 2.5)
 
 dev.off()
 
