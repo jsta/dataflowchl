@@ -25,7 +25,7 @@ library(viridis)
 ## Full POR chl ===========================================#
 plotfull <- ggplot(data = testfull, aes(x = collection.date, y = chl.a.ug.l, colour = Zone, lingtype = Zone))
 plotfull <-  plotfull + geom_line() + suppressWarnings(geom_point(size = 1.5, na.rm = TRUE))
-plotfull <-  plotfull + theme_bw() + labs(x = "", y = "Chlorophyll a (ug/L)") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text = element_text(size = 12), axis.title = element_text(size = 10, face = "bold"), legend.position = c(0.65, 0.87), legend.direction = "horizontal", legend.text = element_text(size = 6), legend.title = element_text(size = 9))
+plotfull <-  plotfull + theme_bw() + labs(x = "", y = "Chlorophyll a (ug/L)") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text = element_text(size = 12), axis.title = element_text(size = 10, face = "bold"), legend.position = c(0.65, 0.77), legend.direction = "horizontal", legend.text = element_text(size = 6), legend.title = element_text(size = 9))
 plotfull <- plotfull + scale_linetype_manual(values = c(1, 2, 2)) + scale_color_manual(values = viridis(3)) 
 
 ## Restricted POR chl =====================================#
@@ -41,7 +41,7 @@ plot_rain <- plot_rain + geom_line(na.rm = TRUE) + geom_point(na.rm = TRUE) + xl
 ## Figure montage + save ===================================#
 png(filename = "figures/chltimeseries.png",width=1120, height =1400, res = 300)
 
-plot_grid(plotfull, plotsub, plot_rain, align = "v", ncol = 1, labels = c("A","B", "C"), hjust = -47, vjust = 2.5)
+plot_grid(plotfull, plotsub, plot_rain, align = "v", ncol = 1, labels = "auto", hjust = -6, vjust = 1.7)
 
 dev.off()
 
