@@ -13,7 +13,7 @@ dt <- dt[dt$location %in% methods::slot(fathombasins, "data")$ZoneName,]
 grabs <- dt
 grabs <- grabs[!(grabs$location %in% c("Deer Key", "Taylor River")),]
 
-grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000)+ grabs$n.num # tkn is all org. n
+grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000)+ grabs$n.num + grabs$nh4um# tkn is all org. n
 grabs <- grabs[,!(names(grabs) %in% c("tkn", "tdkn"))]
 
 # fit distribution to PO4 to fill in zeros following Helsel and Hirsh ch. 13
