@@ -69,6 +69,8 @@ figures/fbmap_wqmn.png: ## create Florida Bay basemap with wqmn grab points
 
 figures/fbmap.png: figures/fbmap_wqmn.png figures/fbmap_dflow.png ## create 2 panel Florida Bay basemap with grab points
 	montage figures/fbmap_dflow.png figures/fbmap_wqmn.png -geometry +2+2 -tile x2 figures/fbmap.png
+	convert figures/fl-inset_border.png -resize 12% -bordercolor black :- | convert figures/fbmap.png -page +870+1470 - -gravity east -flatten figures/fbmap.png
+
 
 figures/rain.png: data/rain/NexradRainData.txt ## create rain time-series figure
 	Rscript R/rain.R
