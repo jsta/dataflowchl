@@ -89,6 +89,11 @@ figures/avmap.png: code/avmap.R ## create average chl and phycoc maps
 	montage chlext.png phycoc.png -geometry +2+2 -tile x2 figures/avmap.png
 	#rm tile.png chlext.png phycoc.png
 
+figures/trout.png: code/trout_creek_salinity_acf.R
+	Rscript code/trout_creek_salinity_acf.R
+	montage figures/fbmap_trout.png figures/trout_creek_salinity_acf.png \
+		-geometry +2+2 -tile 2x -gravity south figures/trout.png
+
 # manuscript #######################################################
 
 ms: data figures clean ## compile ms
