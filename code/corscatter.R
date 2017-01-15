@@ -8,7 +8,7 @@ grabs$location <- factor(grabs$location, levels = c("Whipray Basin", "Rankin", "
 metadata_fields <- c("date", "time", "location", "lat_dd", "lon_dd")
 # data_fields <-   c("salt", "chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn", "chlaiv", "temp", "cond", "sal", "trans", "cdom", "brighteners", "phycoe", "phycoc", "c6chl", "c6cdom", "c6turbidity", "c6temp")
 # data_fields <-   c("chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn")
-data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "chla")
+data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "chla", "sal")
 
 grabs <- grabs[,data_fields]
 
