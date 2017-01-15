@@ -14,6 +14,8 @@ grabs <- dt
 grabs <- grabs[!(grabs$location %in% c("Deer Key", "Taylor River")),]
 
 grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000)+ grabs$n.num + grabs$nh4um# tkn is all org. n
+grabs$ton <- grabs$tkn
+grabs$din <- grabs$n.num + grabs$nh4um
 grabs <- grabs[,!(names(grabs) %in% c("tkn", "tdkn"))]
 
 # fit distribution to PO4 to fill in zeros following Helsel and Hirsh ch. 13
@@ -39,7 +41,7 @@ grabs$np_ratio <- grabs$tn / grabs$tp
 
 grabs[grabs$pp < 0.05 & !is.na(grabs$pp), "pp"] <-  NA# made-up detection limit
 grabs[grabs$tdp > 1.4 & !is.na(grabs$tdp), "tdp"] <-  NA# made-up detection limit
-grabs[grabs$np_ratio > 800& !is.na(grabs$np_ratio), "np_ratio"] <-  NA# made-up detection limit
+grabs[grabs$np_ratio > 800 & !is.na(grabs$np_ratio), "np_ratio"] <-  NA# made-up detection limit
 
 
 
