@@ -50,6 +50,9 @@
 % \usepackage{mathptmx}      % use Times fonts if available on your TeX system
 %
 % insert here the call for the packages your document requires
+\usepackage[numbers]{natbib}
+\usepackage{siunitx}
+\usepackage{hyperref}
 %\usepackage{latexsym}
 % etc.
 %
@@ -72,7 +75,7 @@
 \author{Joseph Stachelek         \and
         Christopher Madden  \and
         Stephen Kelly \and
-        Michelle Blaha%etc.
+        Michelle Blaha
 }
 
 %\authorrunning{Short form of author list} % if too long for running head
@@ -103,11 +106,11 @@ Phytoplankton abundance plays a critical role in structuring ecosystem processes
 
 \section{Introduction}
 \label{intro}
-Phytoplankton abundance plays a critical role in structuring ecosystem processes in subtropical estuaries. For example, unusually high abundance reflects the onset of phytoplankton blooms which can decrease light penetration in the water column causing decreased seagrass growth and benthic productivity \cite{kelble_2005}. Furthermore, phytoplankton abundance is often used as an indirect measure of nutrient loading, eutrophication, and overall ecosystem status (Boyer et al. 2009). As such, it is important to understand the numerous factors that control phytoplankton abundance. One way to conceptualize these regulating factors is to organize them according to the spatial scale at which they operate. At a micro-scale (< 1 m), abundance is regulated by nutrient availability, turbulence, and predation (Mann and Lazier 2013). At larger spatial scales, abundance is regulated by a suite of processes including benthic-pelagic coupling (Zhang et al. 2004, Lawrence et al. 2004) regional climate variability, and global teleconnections (Briceno and Boyer 2009).
+Phytoplankton abundance plays a critical role in structuring ecosystem processes in subtropical estuaries. For example, unusually high abundance reflects the onset of phytoplankton blooms which can decrease light penetration in the water column causing decreased seagrass growth and benthic productivity \citep{kelble_2005}. Furthermore, phytoplankton abundance is often used as an indirect measure of nutrient loading, eutrophication, and overall ecosystem status \citep{boyer_2009}. As such, it is important to understand the numerous factors that control phytoplankton abundance. One way to conceptualize these regulating factors is to organize them according to the spatial scale at which they operate. At a micro-scale ($<$ 1 m), abundance is regulated by nutrient availability, turbulence, and predation \cite{mann2013dynamics}. At larger spatial scales, abundance is regulated by a suite of processes including benthic-pelagic coupling \cite{zhang_2014} \cite{lawrence2004wind} regional climate variability, and global teleconnections \cite{briceno_climatic_2009}.
 
-Different approaches are necessary in order to investigate the regulation of phytoplankton dynamics by environmental factors at each of these scales. For example, information on micro-scale dynamics often comes from laboratory culture studies while information on larger scale dynamics comes from studies utilizing distributed grab sample networks. Some of these larger-scale studies are the result of long-term water quality monitoring efforts that have provided great insight into the seasonality and interannual variability associated with phytoplankton abundance across broad ($>10$ km) geographic scales (Cloern and Jassby 2010).
+Different approaches are necessary in order to investigate the regulation of phytoplankton dynamics by environmental factors at each of these scales. For example, information on micro-scale dynamics often comes from laboratory culture studies while information on larger scale dynamics comes from studies utilizing distributed grab sample networks. Some of these larger-scale studies are the result of long-term water quality monitoring efforts that have provided great insight into the seasonality and interannual variability associated with phytoplankton abundance across broad ($>10$ km) geographic scales \cite{cloern_patterns_2010}.
 
-Although, distributed grab sampling networks are very effective at revealing trends over time, they are less effective at providing spatially explicit information at the intermediate spatial scales relevant to ecosystem management (Anttila et al. 2008). Examples of questions that are difficult to address with distributed grab sampling data include: How much spatial area does a point measurement represent? What are the shapes of water quality boundaries? How much spatial area is affected by a point-source freshwater or nutrient discharge? Here, we use an underway semi-continuous transect sampling approach as a first step towards investigating some of these questions in Florida Bay, USA. The detailed spatial information produced via this approach allowed us to examine the spatial and temporal coherence between elevated phytoplankton abundance (using chl a as a proxy and referred to as chlorophyll hereafter) and a diverse set of water quality parameters. Specifically, we expected to find sharp and persistent boundary points between the numerous sub-basins that make up Florida Bay. Documenting these boundaries is critical as they are important sites of biogeochemical processing and shifts in these boundaries over time can be a measure of Everglades restoration efficacy.
+Although, distributed grab sampling networks are very effective at revealing trends over time, they are less effective at providing spatially explicit information at the intermediate spatial scales relevant to ecosystem management \cite{anttila2008feasible}. Examples of questions that are difficult to address with distributed grab sampling data include: How much spatial area does a point measurement represent? What are the shapes of water quality boundaries? How much spatial area is affected by a point-source freshwater or nutrient discharge? Here, we use an underway semi-continuous transect sampling approach as a first step towards investigating some of these questions in Florida Bay, USA. The detailed spatial information produced via this approach allowed us to examine the spatial and temporal coherence between elevated phytoplankton abundance (using chl a as a proxy and referred to as chlorophyll hereafter) and a diverse set of water quality parameters. Specifically, we expected to find sharp and persistent boundary points between the numerous sub-basins that make up Florida Bay. Documenting these boundaries is critical as they are important sites of biogeochemical processing and shifts in these boundaries over time can be a measure of Everglades restoration efficacy.
 \section{Methods}
 \label{methods}
 % Text with citations \cite{RefB} and \cite{RefJ}.
@@ -115,82 +118,33 @@ Although, distributed grab sampling networks are very effective at revealing tre
 \label{sitedescription}
 % as required. Don't forget to give each section
 % and subsection a unique label (see Sect.~\ref{sec:1}).
-Florida Bay is a large, shallow embayment at the southern tip of the Florida peninsula. It is composed of a series of basins that are hydrologically isolated from each other by islands and shallow mud banks. As a result, many of the interior basins that make up the central Bay have extremely long (6-12 month) residence times (Lee et al. 2016). The spatial extent of this study extends from the saline coastal lakes immediately upstream of Florida Bay, to the embayments fringing the northern rim of the Bay, and finally to the open basins that make up the Bay proper (Figure \ref{fig:1}). 
+Florida Bay is a large, shallow embayment at the southern tip of the Florida peninsula. It is composed of a series of basins that are hydrologically isolated from each other by islands and shallow mud banks. As a result, many of the interior basins that make up the central Bay have extremely long (6-12 month) residence times \citep{lee2016circulation}. The spatial extent of this study extends from the saline coastal lakes immediately upstream of Florida Bay, to the embayments fringing the northern rim of the Bay, and finally to the open basins that make up the Bay proper (Figure \ref{fig:1}). 
 
-The Florida Bay estuary is fed by direct precipitation and by overland flow from Everglades wetlands. Direct precipitation is rare in the dry season from December – May and is concentrated in the wet season from June – November (Figure 2c). The salinity gradient resulting from overland flow extends from the saline lakes and embayments fringing the northeastern edge of the Bay to the Atlantic Ocean and Gulf of Mexico to the south and southwest respectively. In contrast to many estuaries, Florida Bay is characterized by an "upside-down" nutrient gradient where nutrients (especially phosphorus) are low in the estuary headwaters relative to the estuary terminus (Childers et al. 2006).
-
-\subsection{Chlorophyll mapping}
-\label{chlmapping}
-
-We produced chlorophyll surfaces from 2008 - 2015 using a boat-mounted Dataflow onboard flow-through collection system (Madden and Day 1992). While the boat is underway, the Dataflow receives a continuous stream of water from an onboard pump that is routed past a series of sensors operating in flow-through mode. These sensors measure the physical and optical properties of water passing through the system at 6 second intervals (approximately every 70 m of boat travel). The primary optical sensor package includes probes to measure CDOM, phycocyanin (PC), phycoerythrin (PE), turbidity, and chlorophyll fluorescence (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). A second optical sensor package includes probes to measure CDOM and chlorophyll fluorescence (-GEOSAI). Measurements are georeferenced by an onboard GPS unit with a horizontal accuracy of ± 250 cm. Each Dataflow survey is supplemented by a set of discrete grab samples (Figure 1a). These samples were collected from the Dataflow outflow hose while underway and were analyzed for chlorophyll concentration, total suspended solids, as well as a suite of organic and inorganic nutrient species (Table 1).
-
-For each survey, we used multiple linear regression to model the chlorophyll concentration of the discrete grab samples as a function of corresponding optical measurements (Seppala et al. 2007, Seppala and Olli 2008). Initial regressions included all available optical measurements. These "full" models were subject to a model selection procedure where the goodness-of-fit and complexity of candidate models were compared using Akaike information criterion (AIC; Venables and Ripley 2002). Several models with the lowest AIC values were further investigated to examine normality of residuals, avoid multicollinearity, and check that individual coefficients had a logically consistent sign. Final models were applied to the full streaming dataset to estimate chlorophyll concentration in areas where discrete grab samples were not collected. In order to avoid model extrapolation, calculated values that exceeded the maximum concentration in the discrete sample set were discarded. Due to the presence of many land barriers throughout the study area, the resulting georeferenced chlorophyll concentration dataset was spatially interpolated using Inverse Path Distance Weighting according to the methods described in Stachelek and Madden (2015). All statistical analyses and interpolation routines were performed using R (R Core Team 2015). 
-
-\subsection{Long-term chlorophyll data}
-\label{longtermchl}
-
-We used data from an independent long-term (1993 – 2015) water quality monitoring program to place water quality mapping efforts into a longer-term context. These data come from a monitoring program of the South Florida Water Management District and are freely available via the DBHYDRO database (http://sfwmd.gov/dbhydro). Chlorophyll data were split into geographic regions following Boyer et al. (1999), to highlight regional trends (Figure 1b). Note that these regions encompass strictly open water portions of Florida Bay. This contrasts with the Dataflow footprint which includes several saline lakes and semi-enclosed embayments. Data from this longer-term dataset were used as an independent check to verify our discrete samples, underway measurements, and interpolated surfaces (See Appendix Table A1).
-
-\section{Results}
-\label{results}
-
-The longer-term chlorophyll record indicates that concentrations were generally less than 2.5 µg/L in Barnes Sound and eastern Florida Bay (Figure 2a) and were lower than the average concentrations observed in central Florida Bay. One period of exceptionally high chlorophyll in Barnes Sound occurred in 2005 when there was an extreme algal bloom event (Rudnick et al., 2006). Over the course of the present study period (2008 – 2015), chlorophyll concentrations were limited to less than 2 µg/L in Barnes Sound and eastern Florida Bay (Figure 2b). There were two instances in 2009 and one instance in 2012 when chlorophyll concentrations in central Florida Bay exceeded this 2 µg/L threshold. The latter two instances corresponded with periods with elevated precipitation (Figure 2c).  
-
-Our observations of a decreasing west to east chlorophyll gradient (Figure 3) are supported by our spatially explicit maps (Figure 4). Like the discrete grab samples, the maps show lower chlorophyll in the eastern Bay relative to Barnes Sound and the central Bay. In addition, the overall peak in the chlorophyll time-series in October 2012 is evident in the central Bay portion of the December 2012 chlorophyll map (Figure 4). The spatially explicit maps reveal important details about the location and shape of water quality boundaries between adjacent sub-basins of the Bay. Contrary to our expectation, we did not find the presence of sharp water quality boundaries between the central and eastern Bay. Instead, with the exception of July 2015, this boundary was diffuse. We did, however, observe a consistently sharp boundary between the Seven Palm chain-of-lakes (Seven Palm Lake, Monroe Lake, Terrapin Bay) and the central Bay (Figure 4). 
-
-Our chlorophyll maps cover a larger area than the footprint of the long-term grab sampling network. As a result, they convey additional information about chlorophyll in the embayments and saline lakes that fringe the northern rim of Florida Bay. For example, the maps show that the northeastern and eastern edges of Barnes Sound were sites of elevated chlorophyll in 2014 and 2015. Another notable area is the Seven Palm chain-of-lakes where chlorophyll was as high as 20 µg/L (Figure 3, 4). Other sites outside the scope of the long-term grab sampling network with elevated chlorophyll include Pond 5 and Joe Bay where maximum concentrations were between 4 and 7 µg/L. 
-
-We investigated the incidence of elevated chlorophyll in more detail by examining the correlation between chlorophyll and individual nutrient species (Table 1). Chlorophyll was most strongly correlated with particulate phosphorus (ρ = 0.90, p < 0.001). Chlorophyll was moderately correlated with the remaining nutrient species with the exception of total dissolved phosphorus. Total nitrogen (TN) and chlorophyll decreased concurrently along a west-east gradient whereas particulate phosphorus concentration and the nitrogen/phosphorus (NP) ratio appeared to be a function of upstream-downstream position relative to the upstream saline lakes (Figure 5).  
-
-We gained additional insight into the nature of elevated chlorophyll through the process of building our interpolation models. In particular, we tallied the variables that were most often identified in our variable selection procedure. The parameters most often selected in this way included phycocyanin, CDOM, and chlorophyll (Table 2). Average phycocyanin readings had a strong correspondence with average calculated chlorophyll concentration values (Figure 6). Phycocyanin was not overwhelmingly selected in any particular season while CDOM was selected as a modelled variable only during dry season surveys.
-
-\section{Discussion}
-\label{discussion}
-
-The results of the study presented here corroborate previous studies showing generally low chlorophyll concentrations throughout Florida Bay and a strong correspondence between chlorophyll and phosphorus (Fourqurean et al. 1993, Phlips and Badylak 1996). We show that spatially explicit mapping can be an important supplement for understanding spatial chlorophyll variability. In particular, the maps show the presence of strong water quality boundaries between upstream saline lakes and downstream open Bay basins. Contrary to our hypothesis, we did not observe sharp water quality boundaries between central and eastern Florida Bay. This could be due to the underlying geomorphology and number of sub-basins separating these two basins. The two complementary approaches used in this study, the chlorophyll mapping and the long term discrete sampling network, when taken together, can provide a framework for understanding spatial and temporal chlorophyll variability in an estuarine setting. 
-
-\subsection{Phytoplankton abundance and environmental drivers}
-\label{phytoabund}
-
-We found that chlorophyll concentrations in the Bay were generally low throughout the study period (Figure 2). However, there were specific areas and time periods when chlorophyll was elevated (Figure 2, 3, 4). Our results suggest that these incidences are most strongly related to the presence of elevated particulate phosphorus and lower NP ratios (Figure 5). This is consistent with previous studies relating phytoplankton abundance in central and northeastern Florida Bay to the overall and relative concentration of key water column nutrients. For example, Fourqurean et al. (1993) found that elevated chlorophyll concentrations were related to elevated total phosphorus. Like Fourqurean et al. (1993), we found that hotspots of elevated phosphorus and elevated chlorophyll were primarily located in the central Bay (Figure 2, 3, 4, 5). One of the reasons for this is that the Gulf of Mexico is the dominant source of P to the Bay yet import of P via this pathway is limited to the central Bay (Childers et al. 2006, Rudnick et al. 1999). The eastern Bay receives very little input from the Gulf of Mexico (Lee et al. 2016). 
-
-The incidence of elevated chlorophyll can also be related to disturbance caused by regional climatic drivers of water quality (Davis et al. 2004, Briceno and Boyer 2009). These disturbances generally take two forms. On one extreme, periods of high rainfall correspond with increased atmospheric deposition on Florida Bay and increased nutrient loading from the Everglades watershed (Rudnick et al. 1999, Sutula et al. 2003). We did observe elevated chlorophyll associated with periods of increased rainfall and watershed export (Figure 2, 4).  On the other extreme, periods of extremely low rainfall cause conditions of high salinity and low dissolved oxygen. These conditions have been implicated as a cause of widespread sea-grass die-off in Florida Bay (Borum et al. 2005, Zieman et al. 1999). As seagrass biomass represents one of the largest reservoirs of nutrients in Florida Bay, die-off events have the potential to fuel algal blooms by releasing large amounts of nutrients from the benthos to the water column (Fourqurean et al. 2012, Zhang et al. 2004). One such event occurred during the course of the present study (July 2015) encompassing an area of approximately 16,000 hectares in central Florida Bay. This event was similar to past die-off events in that it followed a localized severe drought that resulted in reduced freshwater flows. The timing of the drought in the height of the summer season was coincident with the extreme temperatures, high salinities, and low dissolved oxygen levels that have the potential to trigger die-off. The net effects of this die-off event on water column conditions was likely not realized by the conclusion of the present study period. We continue to monitor water column conditions throughout the lifecycle of the die-off in order to expand our understanding of extreme events and their effect on the water quality in Florida Bay.
-
-\subsection{Spatial variability}
-\label{spatialvariability}
-
-Our spatially explicit chlorophyll maps revealed elevated chlorophyll concentrations in several areas outside the scope of the longer-term grab sampling network. One of these areas was the saline lakes upstream of the central Bay (Figure 3, 4) which receive no anthropogenic P inputs and little P input from natural sources. The reason for elevated chlorophyll in these saline lakes is unknown but may be related to liberation (desorption) of groundwater P as a result of saline groundwater discharge (Price et al. 2006). Another possibility is that the saline lakes are receiving P inputs from the Bay itself during reverse-flow events, storing this P (possibly as submerged aquatic vegetation biomass), and releasing this stored P as a function of senescence or disturbance (Rudnick et al. 1999).  In addition to high chlorophyll in the saline lakes, we observed elevated chlorophyll concentrations on the southeastern edge of Barnes Sound (Figure 4). Here, elevated chlorophyll readings may be a result of wastewater inputs from the Florida Keys from domestic waste fields, including cesspits, via diffusive transport through the porous limestone (Rudnick et al. 1999). Although Rudnick et al. (1999) estimated that wastewater inputs were a small proportion of the overall nutrient budget for the Bay, Szmant and Forrester (1996) suggest that wastewater inputs may be influential in certain areas. 
-
-Our process for resolving spatially explicit fine-scale chlorophyll dynamics revealed several key insights for estimating chlorophyll concentrations by optical means coupled with statistical interpolation. For example, our chlorophyll modelling procedure indicated that single-parameter fluorescence readings were not sufficient for estimating chlorophyll concentration at unmeasured locations. Apart from the known errors associated with variations in the physiological condition of the phytoplankton community, chlorophyll optical fluorescence readings are known to be influenced by non-chlorophyll compounds (Proctor and Roesler 2010). For example, we found that in many instances florescence readings from either the primary or secondary Dataflow chlorophyll probes were not retained by our variable selection procedure (See Appendix). In these instances, phycocyanin was often an important fluorescence parameter. This makes sense given that algal blooms in Florida Bay are often composed of the phycocyanin-containing cyanobacteria Synechococcus \cite{phlips_blooms_1999}. In addition to phycocyanin, CDOM was an important fluorescence parameter. The presence of optically active CDOM can interfere with the chlorophyll fluorescence signals \cite{proctor2010new}. 
-
-Overall, our mapping resolved critical details about the spatial variability of chlorophyll in Florida Bay. It is important to note that our approach provides a fundamentally different data product than previous efforts involving spatial interpolation of coarse grab sampling networks \cite{fourqurean1993process}. In addition to the higher measurement density afforded by Dataflow, our interpolation method honors barriers to flow in the landscape \cite{stachelek_application_2015}. This preserves intense water quality gradients among adjacent Florida Bay basins allowing them to be characterized and tracked over time.
-	
-\section{Conclusion}
-\label{conclusion}
-
-	Through the process of combining discrete grab sampling with spatially explicit water quality mapping, we verified many of the previously established relationships between chlorophyll and nutrients in Florida Bay. In particular, we found that chlorophyll hotspots coincide with elevated phosphorus as well as phycocyanin and CDOM fluorescence. Our overall mapping procedure provides a framework for addressing questions related to spatial representativeness of discrete grab sample networks as well as tracking the location and shape of water quality gradients in Florida Bay. Ultimately, these insights could be used to improve grab sampling network design, evaluate compliance with water quality standards, and measure the efficacy of Everglades restoration.
-
-% \begin{equation}
-% a^2+b^2=c^2
-% \end{equation}
-
-% For one-column wide figures use
-% \begin{figure}
-% Use the relevant command to insert your figure file.
-% For example, with the graphicx package use
-  % \includegraphics{example.eps}
-% figure caption is below the figure
-% \caption{Please write your figure caption here}
-% \label{fig:1}       % Give a unique label
-% \end{figure}
-%
-% For two-column wide figures use
 \begin{figure*}
   \centering
   \includegraphics[width=0.75\textwidth]{../../figures/fbmap.png}
   \caption{Locations of discrete grab sampling sites within Florida Bay, USA. Polygons represent variability in sampling location over the course of the study period. Top: RL = Rankin Lake, WB = Whipray Basin, TB = Terrapin Bay, ML = Monroe Lake, 7P = Seven Palm Lake, MD = Madeira Bay, LM = Little Madeira Bay, P5 = Pond Five, JB = Joe Bay, LG = Long Sound, BW = Blackwater Sound, LS = Lake Surprise, MB = Manatee Bay, BS = Barnes Sound; Bottom: BB – Biscayne Bay, FBE – Florida Bay East, FBC = Florida Bay Central.}
   \label{fig:1}
 \end{figure*}
+
+The Florida Bay estuary is fed by direct precipitation and by overland flow from Everglades wetlands. Direct precipitation is rare in the dry season from December – May and is concentrated in the wet season from June – November (Figure 2c). The salinity gradient resulting from overland flow extends from the saline lakes and embayments fringing the northeastern edge of the Bay to the Atlantic Ocean and Gulf of Mexico to the south and southwest respectively. In contrast to many estuaries, Florida Bay is characterized by an "upside-down" nutrient gradient where nutrients (especially phosphorus) are low in the estuary headwaters relative to the estuary terminus \citep{childers_relating_2006}.
+
+\subsection{Chlorophyll mapping}
+\label{chlmapping}
+
+We produced chlorophyll surfaces from 2008 - 2015 using a boat-mounted Dataflow onboard flow-through collection system \citep{madden1992instrument}. While the boat is underway, the Dataflow receives a continuous stream of water from an onboard pump that is routed past a series of sensors operating in flow-through mode. These sensors measure the physical and optical properties of water passing through the system at 6 second intervals (approximately every 70 m of boat travel). The primary optical sensor package includes probes to measure CDOM, phycocyanin (PC), phycoerythrin (PE), turbidity, and chlorophyll fluorescence (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). A second optical sensor package includes probes to measure CDOM and chlorophyll fluorescence (-GEOSAI). Measurements are georeferenced by an onboard GPS unit with a horizontal accuracy of ± 250 cm. Each Dataflow survey is supplemented by a set of discrete grab samples (Figure 1a). These samples were collected from the Dataflow outflow hose while underway and were analyzed for chlorophyll concentration, total suspended solids, as well as a suite of organic and inorganic nutrient species (Table 1).
+
+For each survey, we used multiple linear regression to model the chlorophyll concentration of the discrete grab samples as a function of corresponding optical measurements \citep{seppala_ship_opportunity_2007,seppala_multivariate_2008}. Initial regressions included all available optical measurements. These "full" models were subject to a model selection procedure where the goodness-of-fit and complexity of candidate models were compared using Akaike information criterion (AIC; \citep{venables2002modern}). Several models with the lowest AIC values were further investigated to examine normality of residuals, avoid multicollinearity, and check that individual coefficients had a logically consistent sign. Final models were applied to the full streaming dataset to estimate chlorophyll concentration in areas where discrete grab samples were not collected. In order to avoid model extrapolation, calculated values that exceeded the maximum concentration in the discrete sample set were discarded. Due to the presence of many land barriers throughout the study area, the resulting georeferenced chlorophyll concentration dataset was spatially interpolated using Inverse Path Distance Weighting according to the methods described in \citep{stachelek_application_2015}. All statistical analyses and interpolation routines were performed using R \citep{rcore_2015} and the DataflowR package \citep{dataflowr}.
+
+\subsection{Long-term chlorophyll data}
+\label{longtermchl}
+
+We used data from an independent long-term (1993 – 2015) water quality monitoring program to place water quality mapping efforts into a longer-term context. These data come from a monitoring program of the South Florida Water Management District and are freely available via the DBHYDRO database (http://sfwmd.gov/dbhydro). Chlorophyll data were split into geographic regions following \citet{boyer_seasonal_1999}, to highlight regional trends (Figure 1b). Note that these regions encompass strictly open water portions of Florida Bay. This contrasts with the Dataflow footprint which includes several saline lakes and semi-enclosed embayments. Data from this longer-term dataset were used as an independent check to verify our discrete samples, underway measurements, and interpolated surfaces (See Appendix Table A1).
+
+\section{Results}
+\label{results}
+
+The longer-term chlorophyll record indicates that concentrations were generally less than 2.5 \si{\micro\gram\per\liter} in Barnes Sound and eastern Florida Bay (Figure 2a) and were lower than the average concentrations observed in central Florida Bay. One period of exceptionally high chlorophyll in Barnes Sound occurred in 2005 when there was an extreme algal bloom event \citep{rudnick_2006}. Over the course of the present study period (2008 - 2015), chlorophyll concentrations were limited to less than 2 \si{\micro\gram\per\liter} in Barnes Sound and eastern Florida Bay (Figure 2b). There were two instances in 2009 and one instance in 2012 when chlorophyll concentrations in central Florida Bay exceeded this 2 \si{\micro\gram\per\liter} threshold. The latter two instances corresponded with periods with elevated precipitation (Figure 2c).
 
 \begin{figure*}
   \centering
@@ -213,23 +167,14 @@ Overall, our mapping resolved critical details about the spatial variability of 
   \label{fig:4}
 \end{figure*}
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/nonchlboxplot.png}
-  \caption{Spatial distribution of discrete water quality parameters in selected Florida Bay basins.}
-  \label{fig:5}
-\end{figure*}
+Our observations of a decreasing west to east chlorophyll gradient (Figure 3) are supported by our spatially explicit maps (Figure 4). Like the discrete grab samples, the maps show lower chlorophyll in the eastern Bay relative to Barnes Sound and the central Bay. In addition, the overall peak in the chlorophyll time-series in October 2012 is evident in the central Bay portion of the December 2012 chlorophyll map (Figure 4). The spatially explicit maps reveal important details about the location and shape of water quality boundaries between adjacent sub-basins of the Bay. Contrary to our expectation, we did not find the presence of sharp water quality boundaries between the central and eastern Bay. Instead, with the exception of July 2015, this boundary was diffuse. We did, however, observe a consistently sharp boundary between the Seven Palm chain-of-lakes (Seven Palm Lake, Monroe Lake, Terrapin Bay) and the central Bay (Figure 4). 
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/avmap.png}
-  \caption{Maps of average chlorophyll a concentration and phycocyanin fluorescence.}
-  \label{fig:6}
-\end{figure*}
+Our chlorophyll maps cover a larger area than the footprint of the long-term grab sampling network. As a result, they convey additional information about chlorophyll in the embayments and saline lakes that fringe the northern rim of Florida Bay. For example, the maps show that the northeastern and eastern edges of Barnes Sound were sites of elevated chlorophyll in 2014 and 2015. Another notable area is the Seven Palm chain-of-lakes where chlorophyll was as high as 20 \si{\micro\gram\per\liter} (Figure 3, 4). Other sites outside the scope of the long-term grab sampling network with elevated chlorophyll include Pond 5 and Joe Bay where maximum concentrations were between 4 and 7 \si{\micro\gram\per\liter}. 
 
-%
-% For tables use
+We investigated the incidence of elevated chlorophyll in more detail by examining the correlation between chlorophyll and individual nutrient species (Table 1). Chlorophyll was most strongly correlated with particulate phosphorus ($\rho$ = 0.90, p $<$ 0.001). Chlorophyll was moderately correlated with the remaining nutrient species with the exception of total dissolved phosphorus. Total nitrogen (TN) and chlorophyll decreased concurrently along a west-east gradient whereas particulate phosphorus concentration and the nitrogen/phosphorus (NP) ratio appeared to be a function of upstream-downstream position relative to the upstream saline lakes (Figure 5).  
+
 \begin{table}
+\centering
 % library(xtable)
 % dt <- read.csv("tables/grabs_cor.csv")
 % dt <- dt[c(1, 2, 3, 6, 7), c(1, 2, 3, 6, 7)]
@@ -250,6 +195,17 @@ tn  &  &  &  &  & 0.67 \\
 \noalign{\smallskip}\hline
 \end{tabular}
 \end{table}
+
+\vspace{2em}
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/nonchlboxplot.png}
+  \caption{Spatial distribution of discrete water quality parameters in selected Florida Bay basins.}
+  \label{fig:5}
+\end{figure*}
+
+We gained additional insight into the nature of elevated chlorophyll through the process of building our interpolation models. In particular, we tallied the variables that were most often identified in our variable selection procedure. The parameters most often selected in this way included phycocyanin, CDOM, and chlorophyll (Table 2). Average phycocyanin readings had a strong correspondence with average calculated chlorophyll concentration values (Figure 6). Phycocyanin was not overwhelmingly selected in any particular season while CDOM was selected as a modelled variable only during dry season surveys.
 
 \begin{table}
 % library(xtable)
@@ -302,14 +258,65 @@ yearmon & cdom & chlaiv & phycoe & c6chl & c6cdom & phycoc & intercept & rsquare
 \end{table}
 
 
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/avmap.png}
+  \caption{Maps of average chlorophyll a concentration and phycocyanin fluorescence.}
+  \label{fig:6}
+\end{figure*}
+
+\section{Discussion}
+\label{discussion}
+
+The results of the study presented here corroborate previous studies showing generally low chlorophyll concentrations throughout Florida Bay and a strong correspondence between chlorophyll and phosphorus \citep{fourqurean1993process, phlips_spatial_1996}. We show that spatially explicit mapping can be an important supplement for understanding spatial chlorophyll variability. In particular, the maps show the presence of strong water quality boundaries between upstream saline lakes and downstream open Bay basins. Contrary to our hypothesis, we did not observe sharp water quality boundaries between central and eastern Florida Bay. This could be due to the underlying geomorphology and number of sub-basins separating these two basins. The two complementary approaches used in this study, the chlorophyll mapping and the long term discrete sampling network, when taken together, can provide a framework for understanding spatial and temporal chlorophyll variability in an estuarine setting. 
+
+\subsection{Phytoplankton abundance and environmental drivers}
+\label{phytoabund}
+
+We found that chlorophyll concentrations in the Bay were generally low throughout the study period (Figure 2). However, there were specific areas and time periods when chlorophyll was elevated (Figure 2, 3, 4). Our results suggest that these incidences are most strongly related to the presence of elevated particulate phosphorus and lower NP ratios (Figure 5). This is consistent with previous studies relating phytoplankton abundance in central and northeastern Florida Bay to the overall and relative concentration of key water column nutrients. For example, \citet{fourqurean1993process} found that elevated chlorophyll concentrations were related to elevated total phosphorus. Like \citet{fourqurean1993process}, we found that hotspots of elevated phosphorus and elevated chlorophyll were primarily located in the central Bay (Figure 2, 3, 4, 5). One of the reasons for this is that the Gulf of Mexico is the dominant source of P to the Bay yet import of P via this pathway is limited to the central Bay \citep{childers_relating_2006, rudnick1999phosphorus}. The eastern Bay receives very little input from the Gulf of Mexico \citep{lee2016circulation}. 
+
+The incidence of elevated chlorophyll can also be related to disturbance caused by regional climatic drivers of water quality \citep{davis2004importance, briceno_climatic_2009}. These disturbances generally take two forms. On one extreme, periods of high rainfall correspond with increased atmospheric deposition on Florida Bay and increased nutrient loading from the Everglades watershed \citep{rudnick1999phosphorus,sutula2003factors}. We did observe elevated chlorophyll associated with periods of increased rainfall and watershed export (Figure 2, 4).  On the other extreme, periods of extremely low rainfall cause conditions of high salinity and low dissolved oxygen. These conditions have been implicated as a cause of widespread sea-grass die-off in Florida Bay \citep{borum2005potential, zieman1999seagrass}. As seagrass biomass represents one of the largest reservoirs of nutrients in Florida Bay, die-off events have the potential to fuel algal blooms by releasing large amounts of nutrients from the benthos to the water column \citep{fourqurean2012carbon, zhang2004potential}. One such event occurred during the course of the present study (July 2015) encompassing an area of approximately 16,000 hectares in central Florida Bay. This event was similar to past die-off events in that it followed a localized severe drought that resulted in reduced freshwater flows. The timing of the drought in the height of the summer season was coincident with the extreme temperatures, high salinities, and low dissolved oxygen levels that have the potential to trigger die-off. The net effects of this die-off event on water column conditions was likely not realized by the conclusion of the present study period. We continue to monitor water column conditions throughout the lifecycle of the die-off in order to expand our understanding of extreme events and their effect on the water quality in Florida Bay.
+
+\subsection{Spatial variability}
+\label{spatialvariability}
+
+Our spatially explicit chlorophyll maps revealed elevated chlorophyll concentrations in several areas outside the scope of the longer-term grab sampling network. One of these areas was the saline lakes upstream of the central Bay (Figure 3, 4) which receive no anthropogenic P inputs and little P input from natural sources. The reason for elevated chlorophyll in these saline lakes is unknown but may be related to liberation (desorption) of groundwater P as a result of saline groundwater discharge \citep{price2006coastal}. Another possibility is that the saline lakes are receiving P inputs from the Bay itself during reverse-flow events, storing this P (possibly as submerged aquatic vegetation biomass), and releasing this stored P as a function of senescence or disturbance \citep{rudnick1999phosphorus}.  In addition to high chlorophyll in the saline lakes, we observed elevated chlorophyll concentrations on the southeastern edge of Barnes Sound (Figure 4). Here, elevated chlorophyll readings may be a result of wastewater inputs from the Florida Keys from domestic waste fields, including cesspits, via diffusive transport through the porous limestone \citep{rudnick1999phosphorus}. Although \citet{rudnick1999phosphorus} estimated that wastewater inputs were a small proportion of the overall nutrient budget for the Bay, \citet{szmant1996water} suggest that wastewater inputs may be influential in certain areas. 
+
+Our process for resolving spatially explicit fine-scale chlorophyll dynamics revealed several key insights for estimating chlorophyll concentrations by optical means coupled with statistical interpolation. For example, our chlorophyll modelling procedure indicated that single-parameter fluorescence readings were not sufficient for estimating chlorophyll concentration at unmeasured locations. Apart from the known errors associated with variations in the physiological condition of the phytoplankton community, chlorophyll optical fluorescence readings are known to be influenced by non-chlorophyll compounds \citep{proctor2010new}. For example, we found that in many instances florescence readings from either the primary or secondary Dataflow chlorophyll probes were not retained by our variable selection procedure (See Appendix). In these instances, phycocyanin was often an important fluorescence parameter. This makes sense given that algal blooms in Florida Bay are often composed of the phycocyanin-containing cyanobacteria Synechococcus \citep{phlips_blooms_1999}. In addition to phycocyanin, CDOM was an important fluorescence parameter. The presence of optically active CDOM can interfere with the chlorophyll fluorescence signals \citep{proctor2010new}. 
+
+Overall, our mapping resolved critical details about the spatial variability of chlorophyll in Florida Bay. It is important to note that our approach provides a fundamentally different data product than previous efforts involving spatial interpolation of coarse grab sampling networks \citep{fourqurean1993process}. In addition to the higher measurement density afforded by Dataflow, our interpolation method honors barriers to flow in the landscape \citep{stachelek_application_2015}. This preserves intense water quality gradients among adjacent Florida Bay basins allowing them to be characterized and tracked over time.
+	
+\section{Conclusion}
+\label{conclusion}
+
+	Through the process of combining discrete grab sampling with spatially explicit water quality mapping, we verified many of the previously established relationships between chlorophyll and nutrients in Florida Bay. In particular, we found that chlorophyll hotspots coincide with elevated phosphorus as well as phycocyanin and CDOM fluorescence. Our overall mapping procedure provides a framework for addressing questions related to spatial representativeness of discrete grab sample networks as well as tracking the location and shape of water quality gradients in Florida Bay. Ultimately, these insights could be used to improve grab sampling network design, evaluate compliance with water quality standards, and measure the efficacy of Everglades restoration.
+
+% \begin{equation}
+% a^2+b^2=c^2
+% \end{equation}
+
+% For one-column wide figures use
+% \begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  % \includegraphics{example.eps}
+% figure caption is below the figure
+% \caption{Please write your figure caption here}
+% \label{fig:1}       % Give a unique label
+% \end{figure}
+%
+% For two-column wide figures use
+
+%
+% For tables use
+
 %\begin{acknowledgements}
-%If you'd like to thank anyone, place your comments here
-%and remove the percent signs.
+
 %\end{acknowledgements}
 
 % BibTeX users please use one of
-%\bibliographystyle{spbasic}      % basic style, author-year citations
-\bibliographystyle{spmpsci}      % mathematics and physical sciences
+\bibliographystyle{spbasic}      % basic style, author-year citations
+%\bibliographystyle{spmpsci}      % mathematics and physical sciences
 %\bibliographystyle{spphys}       % APS-like style for physics
 \bibliography{../dataflowchl.bib}   % name your BibTeX data base
 
