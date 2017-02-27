@@ -37,6 +37,7 @@
 % \end{filecontents*}
 %
 \RequirePackage{fix-cm}
+
 %
 %\documentclass{svjour3}                     % onecolumn (standard format)
 %\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
@@ -53,6 +54,9 @@
 \usepackage[numbers]{natbib}
 \usepackage{siunitx}
 \usepackage{hyperref}
+\usepackage{lineno}
+\usepackage{setspace}
+\doublespacing
 %\usepackage{latexsym}
 % etc.
 %
@@ -63,6 +67,7 @@
 \journalname{Estuaries and Coasts}
 %
 \begin{document}
+\linenumbers
 
 \title{Fine-scale relationships between phytoplankton abundance and environmental drivers in Florida Bay, USA%\thanks{Grants or other notes
 %about the article that should go on the front page should be
@@ -91,7 +96,7 @@
               East Lansing, MI, 48824, USA
 }
 
-\date{Edited: 2017-02-14 / Received: date / Accepted: date}
+\date{Edited: 2017-02-27 / Received: date / Accepted: date}
 % The correct dates will be entered by the editor
 
 
@@ -120,13 +125,6 @@ Although, distributed grab sampling networks are very effective at revealing tre
 % and subsection a unique label (see Sect.~\ref{sec:1}).
 Florida Bay is a large, shallow embayment at the southern tip of the Florida peninsula. It is composed of a series of basins that are hydrologically isolated from each other by islands and shallow mud banks. As a result, many of the interior basins that make up the central Bay have long (6-12 month) residence times and limited circulation \citep{lee2016circulation}. The spatial extent of this study extends from eastern to central Florida Bay and from the upstream coastal lakes and embayments on the northern shore to the open basins that make up the Bay proper (Figure \ref{fig:1}). 
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/fbmap.png}
-  \caption{Locations of discrete grab sampling sites within Florida Bay, USA. Polygons represent variability in sampling location over the course of the study period. Top: RL = Rankin Lake, WB = Whipray Basin, TB = Terrapin Bay, ML = Monroe Lake, 7P = Seven Palm Lake, MD = Madeira Bay, LM = Little Madeira Bay, P5 = Pond Five, JB = Joe Bay, LG = Long Sound, BW = Blackwater Sound, LS = Lake Surprise, MB = Manatee Bay, BS = Barnes Sound; Bottom: BB – Biscayne Bay, FBE – Florida Bay East, FBC = Florida Bay Central.}
-  \label{fig:1}
-\end{figure*}
-
 The Florida Bay estuary is fed by direct precipitation as well as  a combination of overland and groundwater flow from Everglades wetlands. Direct precipitation is rare in the dry season from December – May and is concentrated in the wet season from June – November (Figure 2c). The salinity gradient resulting from Everglades freshwater inputs extends from the creeks, lakes, and embayments on the north edge of the Bay to the Atlantic Ocean and Gulf of Mexico to east, south, and southwest. In contrast to many estuaries, Florida Bay is characterized by an "upside-down" nutrient gradient where nutrients (especially phosphorus) are lower in the estuary headwaters relative to the estuary terminus \citep{childers_relating_2006}.
 
 \subsection{Chlorophyll mapping}
@@ -134,7 +132,7 @@ The Florida Bay estuary is fed by direct precipitation as well as  a combination
 
 We produced chlorophyll surfaces on a quarterly to bi-monthly basis from 2008 - 2015 using a boat-mounted Dataflow onboard flow-through collection system \citep{madden1992instrument}. While the boat is underway, the Dataflow receives a continuous stream of water from an onboard pump that is routed to a series of sensors operating in flow-through mode. These sensors measure the physical and optical properties of water passing through the system at 6 second intervals (approximately every 40-70 m of boat travel). The primary optical sensor package includes probes to measure CDOM, phycocyanin (PC), phycoerythrin (PE), turbidity, and chlorophyll fluorescence (Cyclops-7 Series; Turner Designs; Sunnyvale CA, USA). A second optical sensor package, which operates in tandem, includes probes to measure CDOM and chlorophyll fluorescence (GEOSAI SA de CV). Measurements were georeferenced by an onboard GPS unit with a horizontal accuracy of ± 250 cm. Each Dataflow survey was supplemented by a set of discrete grab samples located in a representative basin or area of distinct water quality (Figure 1a). These samples were collected from the Dataflow outflow hose while underway and were analyzed in the laboratory for chlorophyll concentration via pigment extraction, total suspended solids, as well as a suite of organic and inorganic nutrient species (Table 1).
 
-For each survey, we used multiple linear regression to model the chlorophyll concentration of the discrete grab samples as a function of corresponding optical measurements \citep{seppala_ship_opportunity_2007,seppala_multivariate_2008}. Initial regressions included all available optical measurements. These "full" models were subject to a model selection procedure where the goodness-of-fit and complexity of candidate models were compared using Akaike information criterion (AIC; \citep{venables2002modern}). Several models with the lowest AIC values were further investigated to examine normality of residuals, avoid multicollinearity, and check that individual coefficients had a logically consistent sign. Final models were applied to the full streaming dataset to estimate chlorophyll concentration in areas where discrete grab samples were not collected. In order to avoid model extrapolation, calculated values that exceeded the maximum concentration in the discrete sample set were discarded. Due to the presence of many land barriers throughout the study area, the resulting georeferenced chlorophyll concentration dataset was spatially interpolated using Inverse Path Distance Weighting according to the methods described in \citep{stachelek_application_2015}. All statistical analyses and interpolation routines were performed using R \citep{rcore_2015} and the DataflowR package \citep{dataflowr}.
+For each survey, we used multiple linear regression to model the chlorophyll concentration of the discrete grab samples as a function of corresponding optical measurements \citep{seppala_ship_opportunity_2007,seppala_multivariate_2008}. Initial regressions included all available optical measurements. These "full" models were subject to a model selection procedure where the goodness-of-fit and complexity of candidate models were compared using Akaike information criterion (AIC; \citep{venables2002modern}). Several models with the lowest AIC values were further investigated to examine normality of residuals, avoid multicollinearity, and check that individual coefficients had a logically consistent sign. Final models were applied to the full streaming dataset to estimate chlorophyll concentration in areas where discrete grab samples were not collected. In order to avoid model extrapolation, calculated values that exceeded the maximum concentration in the discrete sample set were discarded. Due to the presence of many land barriers throughout the study area, the resulting georeferenced chlorophyll concentration dataset was spatially interpolated using Inverse Path Distance Weighting according to the methods described in \citep{stachelek_application_2015}. All statistical analyses and interpolation routines were performed using R \citep{rcore_2015} and the DataflowR package \citep{dataflowr}. All data used in this study is available for download \citep{madden2017}. 
 
 \subsection{Long-term chlorophyll data}
 \label{longtermchl}
@@ -146,124 +144,13 @@ We used data from an independent long-term (1993 – 2015) water quality monitor
 
 The longer-term record indicates that there was distinct zonation of the chlorophyll distribution in Florida Bay (Figure 2a). Concentrations in Barnes Sound and eastern Florida Bay were generally less than 2 \si{\micro\gram\per\liter} throughout the study while concentrations in central Florida Bay often exceeded 5 \si{\micro\gram\per\liter}. Concentrations in the central Bay declined notably in the latter half of the long-term record. One period of exceptionally high chlorophyll occurred in Barnes Sound in 2005 during an algal bloom event \citep{rudnick_2006}. Post-2008, chlorophyll concentrations were almost exclusively lower than 2 \si{\micro\gram\per\liter} in all three regions of the open Bay (Figure 2b). Exceptions to this threshold occurred in 2009 and 2012 during prolonged periods of above-average precipitation (Figure 2c).
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/chltimeseries.png}
-  \caption{Time series of average chlorophyll concentration within Florida Bay water quality zones. BS = Barnes Sound, FBC = Florida Bay Central, FBE = Florida Bay East. Precipitation during the study period. Precipitation data shown are composite means of three gages in the Florida Bay watershed.}
-  \label{fig:2}
-\end{figure*}
-
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/chlboxplot.png}
-  \caption{Spatial distribution of chlorophyll concentration in selected Florida Bay basins. Basins are arranged geographically from west to east.}
-  \label{fig:3}
-\end{figure*}
-
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/multipanel.png}
-  \caption{Chlorophyll concentration calculated using the coefficients in Table 2. Note that the color ramp is log-scaled.}
-  \label{fig:4}
-\end{figure*}
-
 Past observations of a decreasing west to east chlorophyll gradient (Figure 3) are supported by the high resolution chlorophyll maps from Dataflow analysis (Figure 4). Like the discrete grab samples, the chlorophyll maps show lower concentrations in the eastern Bay relative to the central Bay or the Barnes Sound regions. The magnitude and extent of the large central Bay chlorophyll peak measured from grab samples in late 2012 is evident in the chlorophyll map from December 2012 (Figure 4). The maps also reveal important details about the location and shape of water quality boundaries between adjacent sub-basins of the Bay. Contrary to our expectation, we did not find the presence of sharp water quality boundaries between the central and eastern Bay. Instead, with the exception of July 2015, this boundary was diffuse. We did, however, observe a consistently sharp boundary between the Seven Palm chain-of-lakes (Seven Palm Lake, Monroe Lake, Terrapin Bay) and the central Bay (Figure 4). 
 
 Our chlorophyll maps cover a larger area than the footprint of the long-term grab sampling network. As a result, they convey additional information about chlorophyll in the embayments and lakes on the northern boundary of Florida Bay. For example, the maps show that the northeastern and eastern edges of Barnes Sound were sites of elevated chlorophyll in 2014 and 2015. Another notable area is the Seven Palm chain-of-lakes where chlorophyll was as high as 20 \si{\micro\gram\per\liter} (Figure 3, 4). Other sites outside the scope of the long-term grab sampling network where the Dataflow mapping detected elevated chlorophyll include Taylor River and Joe Bay where maximum concentrations were between 4 and 7 \si{\micro\gram\per\liter}. 
 
 We investigated the incidence of elevated chlorophyll in more detail by examining the correlation between chlorophyll and individual nutrient species (Table 1). Chlorophyll was most strongly correlated with particulate phosphorus ($\rho$ = 0.90, p $<$ 0.001). Chlorophyll was moderately correlated with the remaining nutrient species with the exception of total dissolved phosphorus. Total nitrogen (TN) and chlorophyll decreased concomitantly along a west-east gradient whereas particulate phosphorus concentration and the nitrogen/phosphorus (NP) ratio appeared to be a function of upstream-downstream position within the wetlands lakes region (Figure 5).  
 
-\begin{table}
-\centering
-% library(xtable)
-% dt <- read.csv("tables/grabs_cor.csv")
-% dt <- dt[c(1, 2, 3, 6, 7), c(1, 2, 3, 6, 7)]
-% xtable(dt)
-% table caption is above the table
-\caption{Correlation matrix of water quality parameters for selected Florida Bay basins. TP = total phosphorus, TDP = total dissolved phosphorus, PO4 = ortho-phosphate, TN = total nitrogen, chla = chlorophyll a, PP = particulate phosphorus. $**$ indicates a significant correlation at P $<$ 0.001}
-\label{tab:1}       % Give a unique label
-% For LaTeX tables use
-\begin{tabular}{llllll}
-\hline\noalign{\smallskip}
-& tp & tdp & po4 & tn & chla \\
-\noalign{\smallskip}\hline\noalign{\smallskip}
-pp & 0.68** & 0.20 & 0.34 & 0.78** & 0.90** \\ 
-tp  &  & 0.65** & 0.51** & 0.51** & 0.74** \\ 
-tdp  &  &  & 0.48** & 0.09 & 0.28 \\ 
-po4  &  &  &  & 0.97** & 0.63** \\ 
-tn  &  &  &  &  & 0.67** \\ 
-\noalign{\smallskip}\hline
-\end{tabular}
-\end{table}
-
-\vspace{2em}
-
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.75\textwidth]{../../figures/nonchlboxplot.png}
-  \caption{Spatial distribution of discrete water quality parameters in selected Florida Bay basins.}
-  \label{fig:5}
-\end{figure*}
-
 We gained additional insight into the nature of elevated chlorophyll through the process of building our interpolation models. In particular, we tallied the variables that were most often identified in our variable selection procedure. The parameters most often selected in this way included phycocyanin, CDOM, and chlorophyll (Table 2). Average phycocyanin readings had a particularly strong correspondence with average calculated chlorophyll concentration values (Figure 6). Phycocyanin was not associated with any particular season while CDOM was an important variable to the model only during dry season surveys.
-
-\begin{table}
-% library(xtable)
-% dt <- read.csv("tables/modelfits.csv")
-% dt <- dt[,c(2, 5:10, 17:19)]
-% dt <- dt[order(dt$yearmon),]
-% dt$pvalue <- round(dt$pvalue, 2)
-% dt[dt$pvalue < 0.01 & !is.na(dt$pvalue), "pvalue"] <- "<0.01"
-% print(xtable(dt), include.rownames = FALSE)
-% table caption is above the table
-\caption{Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression.}
-\label{tab:2}       % Give a unique label
-% For LaTeX tables use
-\begin{tabular}{rrrrrrrrrr}
-\hline\noalign{\smallskip}
-date & cdom & chlaiv & phycoe & c6chl & c6cdom & phycoc & intercept & rsquared & pvalue \\ 
-\noalign{\smallskip}\hline\noalign{\smallskip}
- 2008-04 &  & 27.63 &  &  &  &  & -4.63 & 0.37 & 0.2 \\ 
-  2008-08 &  & 5.12 &  &  &  &  & -0.14 & 0.90 & $<$0.01 \\ 
-  2008-12 &  &  &  &  &  & 0.05 & 0.03 & 0.39 & 0.19 \\ 
-  2009-04 &  &  &  &  &  &  &  &  &  \\ 
-  2009-06 &  &  &  &  &  &  &  &  &  \\ 
-  2009-10 & -67.15 &  &  & 0.05 &  &  & 6.27 & 0.97 & $<$0.01 \\ 
-  2010-02 &  &  & 0.02 & 0.03 & -0.00 & -0.95 & 3.95 & 0.99 & 0.13 \\ 
-  2010-04 &  & 7.83 &  &  &  &  & -0.92 & 0.69 & $<$0.01 \\ 
-  2010-07 &  & 3.56 &  &  &  &  & 0.05 & 0.45 & 0.02 \\ 
-  2011-02 &  &  &  & 0.01 & -0.00 &  & 0.00 & 0.98 & $<$0.01 \\ 
-  2011-05 &  & 12.52 &  &  &  & 0.15 & -3.13 & 0.90 & $<$0.01 \\ 
-  2011-06 &  &  &  &  &  &  &  &  &  \\ 
-  2011-09 &  &  &  &  &  &  &  &  &  \\ 
-  2012-03 &  &  &  &  &  &  &  &  &  \\ 
-  2012-06 &  &  &  &  &  & 0.06 & 0.25 & 0.84 & $<$0.01 \\ 
-  2012-09 &  & 20.29 &  &  &  &  & -3.43 & 0.84 & $<$0.01 \\ 
-  2012-12 &  &  &  &  & 0.00 & 0.14 & -1.21 & 0.97 & $<$0.01 \\ 
-  2013-04 &  &  &  &  &  &  &  &  &  \\ 
-  2013-05 &  &  &  &  &  & 0.26 & -2.77 & 0.96 & $<$0.01 \\ 
-  2013-08 &  &  &  &  &  & 0.16 & -0.26 & 0.68 & $<$0.01 \\ 
-  2013-11 &  &  &  &  &  & 0.19 & -1.46 & 0.93 & $<$0.01 \\ 
-  2014-02 &  &  &  &  &  &  &  &  &  \\ 
-  2014-04 &  &  &  & 0.02 &  &  & -1.36 & 0.97 & $<$0.01 \\ 
-  2014-07 &  &  & 0.00 & 0.00 &  & 0.15 & -2.62 & 0.91 & $<$0.01 \\ 
-  2014-10 &  &  & -0.00 &  & -0.00 & 0.26 & -2.10 & 0.99 & $<$0.01 \\ 
-  2015-02 &  &  &  & 0.01 & -0.00 & 0.05 & -0.97 & 0.94 & $<$0.01 \\ 
-  2015-05 &  &  &  &  &  & 0.27 & -3.02 & 0.74 & $<$0.01 \\ 
-  2015-07 &  & 0.81 &  &  &  & 0.32 & -5.74 & 0.98 & $<$0.01 \\ 
-  2015-09 &  &  &  &  &  & 0.12 & -0.80 & 0.68 & $<$0.01 \\  
-   \hline
-\noalign{\smallskip}\hline
-\end{tabular}
-\end{table}
-
-
-\begin{figure*}
-  \centering
-  \includegraphics[width=0.45\textwidth]{../../figures/avmap.png}
-  \caption{Maps of average chlorophyll a concentration and phycocyanin fluorescence.}
-  \label{fig:6}
-\end{figure*}
 
 \section{Discussion}
 \label{discussion}
@@ -334,6 +221,137 @@ Our mapping technique resolved critical details about the spatial variability of
 % Author, Book title, page numbers. Publisher, place (year)
 % etc
 % \end{thebibliography}
+
+\newpage
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/fbmap.png}
+  \caption{Locations of discrete grab sampling sites within Florida Bay, USA. Polygons represent variability in sampling location over the course of the study period. Top: RL = Rankin Lake, WB = Whipray Basin, TB = Terrapin Bay, ML = Monroe Lake, 7P = Seven Palm Lake, MD = Madeira Bay, LM = Little Madeira Bay, P5 = Pond Five, JB = Joe Bay, LG = Long Sound, BW = Blackwater Sound, LS = Lake Surprise, MB = Manatee Bay, BS = Barnes Sound; Bottom: BB – Biscayne Bay, FBE – Florida Bay East, FBC = Florida Bay Central.}
+  \label{fig:1}
+\end{figure*}
+
+\newpage
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/chltimeseries.png}
+  \caption{Time series of average chlorophyll concentration within Florida Bay water quality zones. BS = Barnes Sound, FBC = Florida Bay Central, FBE = Florida Bay East. Precipitation during the study period. Precipitation data shown are composite means of three gages in the Florida Bay watershed.}
+  \label{fig:2}
+\end{figure*}
+
+\newpage
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/chlboxplot.png}
+  \caption{Spatial distribution of chlorophyll concentration in selected Florida Bay basins. Basins are arranged geographically from west to east.}
+  \label{fig:3}
+\end{figure*}
+
+\clearpage
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/multipanel.png}
+  \caption{Chlorophyll concentration calculated using the coefficients in Table 2. Note that the color ramp is log-scaled.}
+  \label{fig:4}
+\end{figure*}
+
+\clearpage
+
+\begin{table}
+\centering
+% library(xtable)
+% dt <- read.csv("tables/grabs_cor.csv")
+% dt <- dt[c(1, 2, 3, 6, 7), c(1, 2, 3, 6, 7)]
+% xtable(dt)
+% table caption is above the table
+\caption{Correlation matrix of water quality parameters for selected Florida Bay basins. TP = total phosphorus, TDP = total dissolved phosphorus, PO4 = ortho-phosphate, TN = total nitrogen, chla = chlorophyll a, PP = particulate phosphorus. $**$ indicates a significant correlation at P $<$ 0.001}
+\label{tab:1}       % Give a unique label
+% For LaTeX tables use
+\begin{tabular}{llllll}
+\hline\noalign{\smallskip}
+& tp & tdp & po4 & tn & chla \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+pp & 0.68** & 0.20 & 0.34 & 0.78** & 0.90** \\ 
+tp  &  & 0.65** & 0.51** & 0.51** & 0.74** \\ 
+tdp  &  &  & 0.48** & 0.09 & 0.28 \\ 
+po4  &  &  &  & 0.97** & 0.63** \\ 
+tn  &  &  &  &  & 0.67** \\ 
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../figures/nonchlboxplot.png}
+  \caption{Spatial distribution of discrete water quality parameters in selected Florida Bay basins.}
+  \label{fig:5}
+\end{figure*}
+
+\newpage
+
+\begin{table}
+% library(xtable)
+% dt <- read.csv("tables/modelfits.csv")
+% dt <- dt[,c(2, 5:10, 17:19)]
+% dt <- dt[order(dt$yearmon),]
+% dt$pvalue <- round(dt$pvalue, 2)
+% dt[dt$pvalue < 0.01 & !is.na(dt$pvalue), "pvalue"] <- "<0.01"
+% print(xtable(dt), include.rownames = FALSE)
+% table caption is above the table
+\caption{Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression.}
+\label{tab:2}       % Give a unique label
+% For LaTeX tables use
+\begin{tabular}{rrrrrrrrrr}
+\hline\noalign{\smallskip}
+date & cdom & chlaiv & phycoe & c6chl & c6cdom & phycoc & intercept & rsquared & pvalue \\ 
+\noalign{\smallskip}\hline\noalign{\smallskip}
+ 2008-04 &  & 27.63 &  &  &  &  & -4.63 & 0.37 & 0.2 \\ 
+  2008-08 &  & 5.12 &  &  &  &  & -0.14 & 0.90 & $<$0.01 \\ 
+  2008-12 &  &  &  &  &  & 0.05 & 0.03 & 0.39 & 0.19 \\ 
+  2009-04 &  &  &  &  &  &  &  &  &  \\ 
+  2009-06 &  &  &  &  &  &  &  &  &  \\ 
+  2009-10 & -67.15 &  &  & 0.05 &  &  & 6.27 & 0.97 & $<$0.01 \\ 
+  2010-02 &  &  & 0.02 & 0.03 & -0.00 & -0.95 & 3.95 & 0.99 & 0.13 \\ 
+  2010-04 &  & 7.83 &  &  &  &  & -0.92 & 0.69 & $<$0.01 \\ 
+  2010-07 &  & 3.56 &  &  &  &  & 0.05 & 0.45 & 0.02 \\ 
+  2011-02 &  &  &  & 0.01 & -0.00 &  & 0.00 & 0.98 & $<$0.01 \\ 
+  2011-05 &  & 12.52 &  &  &  & 0.15 & -3.13 & 0.90 & $<$0.01 \\ 
+  2011-06 &  &  &  &  &  &  &  &  &  \\ 
+  2011-09 &  &  &  &  &  &  &  &  &  \\ 
+  2012-03 &  &  &  &  &  &  &  &  &  \\ 
+  2012-06 &  &  &  &  &  & 0.06 & 0.25 & 0.84 & $<$0.01 \\ 
+  2012-09 &  & 20.29 &  &  &  &  & -3.43 & 0.84 & $<$0.01 \\ 
+  2012-12 &  &  &  &  & 0.00 & 0.14 & -1.21 & 0.97 & $<$0.01 \\ 
+  2013-04 &  &  &  &  &  &  &  &  &  \\ 
+  2013-05 &  &  &  &  &  & 0.26 & -2.77 & 0.96 & $<$0.01 \\ 
+  2013-08 &  &  &  &  &  & 0.16 & -0.26 & 0.68 & $<$0.01 \\ 
+  2013-11 &  &  &  &  &  & 0.19 & -1.46 & 0.93 & $<$0.01 \\ 
+  2014-02 &  &  &  &  &  &  &  &  &  \\ 
+  2014-04 &  &  &  & 0.02 &  &  & -1.36 & 0.97 & $<$0.01 \\ 
+  2014-07 &  &  & 0.00 & 0.00 &  & 0.15 & -2.62 & 0.91 & $<$0.01 \\ 
+  2014-10 &  &  & -0.00 &  & -0.00 & 0.26 & -2.10 & 0.99 & $<$0.01 \\ 
+  2015-02 &  &  &  & 0.01 & -0.00 & 0.05 & -0.97 & 0.94 & $<$0.01 \\ 
+  2015-05 &  &  &  &  &  & 0.27 & -3.02 & 0.74 & $<$0.01 \\ 
+  2015-07 &  & 0.81 &  &  &  & 0.32 & -5.74 & 0.98 & $<$0.01 \\ 
+  2015-09 &  &  &  &  &  & 0.12 & -0.80 & 0.68 & $<$0.01 \\  
+   \hline
+% \noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=0.45\textwidth]{../../figures/avmap.png}
+  \caption{Maps of average chlorophyll a concentration and phycocyanin fluorescence.}
+  \label{fig:6}
+\end{figure*}
 
 \end{document}
 % end of file template.tex
