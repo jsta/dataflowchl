@@ -38,23 +38,33 @@ plotsub <- plotsub + scale_linetype_manual(values=c(1,2,2)) + scale_color_manual
 plot_rain <- ggplot(data = rain, aes(x = date, y = TaylorSlough))
 plot_rain <- plot_rain + geom_line(na.rm = TRUE) + geom_point(na.rm = TRUE) + xlab("") + theme(axis.title = element_text(size = 10, face = "bold")) + ylab("Precipitation(cm)")
 
-## Figure montage + save ===================================#
+## Figure montage + save ####################################
 png(filename = "figures/chltimeseries.png",width=1120, height =1400, res = 300)
 
 plot_grid(plotfull, plotsub, plot_rain, align = "v", ncol = 1, labels = "auto", hjust = -6, vjust = 1.7)
 
 dev.off()
 
-#system("pdftk figures/chltimeseries.pdf cat 2 output figures/chltimeseries2.pdf")
-#system("convert figures/chltimeseries2.pdf figures/chltimeseries.png")
-
-# calculate cumulative rain per year
+# calculate cumulative rain per year ########################
 library(dplyr)
 rain$year <- strftime(rain$date, format = "%Y")
 # rain$wy <- jsta::wygen(rain$date)$wy
 # rain <- group_by(rain, wy)
 rain <- group_by(rain, year)
 summarise(rain, sum = sum(TaylorSlough))
+
+# calculate mean + se for chl in the central bay ############
+# compare the 2001-2008 and 2008-2015 time periods
+
+testfull_cb <- filter(testfull, Zone == "FBC")
+testfull_cb$period <- case_when(
+  as.Date(testfull_cb$collection.date) < as.Date("2008-01-01") & as.Date(testfull_cb$collection.date) > as.Date("2001-12-30") ~ "early",
+  as.Date(testfull_cb$collection.date) > as.Date("2008-01-01") ~ "late")
+testfull_cb <- group_by(testfull_cb, period)
+(testfull_cb_stats <- summarise(testfull_cb, mean = mean(chl.a.ug.l, na.rm = TRUE),
+                       se   = 2 * sd(chl.a.ug.l, na.rm = TRUE) / length(chl.a.ug.l)))
+
+
 
 
 
