@@ -53,7 +53,9 @@ figures: figures/multipanel.png figures/multipanel_mb.png figures/fbmap.png figu
 	@echo "figures built"
 
 figures/multipanel.png: $(SURFACE_PATHS) ## create multipanel figure
-	Rscript code/multipanel.R	
+	Rscript code/multipanel.R
+	convert multipanel.png -gravity North -chop 0x85 figures/multipanel.png
+	-rm multipanel.png
 	
 figures/multipanel_mb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed to Manatee Bay
 	Rscript --default-packages=methods,utils R/multipanel_mb.R	
