@@ -52,7 +52,7 @@ data/flow/ENPOps_flow.csv: ## pull USGS flow data from NWIS
 figures: figures/multipanel.png figures/multipanel_mb.png figures/fbmap.png figures/rain.png figures/chlboxplot.png figures/nonchlboxplot.png ## create figures
 	@echo "figures built"
 
-figures/multipanel.png: $(SURFACE_PATHS) ## create multipanel figure
+figures/multipanel.png: $(SURFACE_PATHS) code/multipanel.R ## create multipanel figure
 	Rscript code/multipanel.R
 	convert multipanel.png -gravity North -chop 0x85 figures/multipanel.png
 	-rm multipanel.png
