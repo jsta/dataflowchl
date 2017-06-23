@@ -47,3 +47,15 @@ dev.off()
 
 #system("pdftk figures/chltimeseries.pdf cat 2 output figures/chltimeseries2.pdf")
 #system("convert figures/chltimeseries2.pdf figures/chltimeseries.png")
+
+# calculate cumulative rain per year
+library(dplyr)
+rain$year <- strftime(rain$date, format = "%Y")
+# rain$wy <- jsta::wygen(rain$date)$wy
+# rain <- group_by(rain, wy)
+rain <- group_by(rain, year)
+summarise(rain, sum = sum(TaylorSlough))
+
+
+
+
