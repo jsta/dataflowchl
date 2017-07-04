@@ -3,8 +3,6 @@ grabs <- read.csv(file.path("data", "allgrabs_log.csv"), row.names = NULL, strin
 grabs$location <- factor(grabs$location, levels = c("Whipray Basin", "Rankin", "Terrapin Bay", "Monroe Lake", "Seven Palm Lake", "Madeira Bay", "Little Madeira", "Pond 5", "Joe Bay", "Long Sound", "Blackwater Sound", "Lake Surprise", "Manatee", "Barnes"))
 
 metadata_fields <- c("date", "time", "location", "lat_dd", "lon_dd")
-# data_fields <-   c("salt", "chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn", "chlaiv", "temp", "cond", "sal", "trans", "cdom", "brighteners", "phycoe", "phycoc", "c6chl", "c6cdom", "c6turbidity", "c6temp")
-# data_fields <-   c("chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn")
 data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "nh4um", "no3um", "chla")
 
 grabs_cor <- grabs[,data_fields]
@@ -41,27 +39,3 @@ names(grabs_cor)[1:(ncol(grabs_cor) - 1)] <- c(toupper(
 
 write.csv(grabs_cor, "tables/grabs_cor.csv", row.names = FALSE)
 write.csv(p.values, "tables/grabs_pvalues.csv", row.names = FALSE)
-
-grabs_cor <- data.frame(
-  matrix(
-  sapply(unlist(grabs_cor), function(x) na.omit(x))
-  , ncol = ncol(grabs_cor), byrow = FALSE),
-  row.names = names(grabs[,data_fields])[1:(length(names(grabs[,data_fields])) - 1)])
-
-p.values <- data.frame(
-  matrix(
-    sapply(unlist(p.values), function(x) na.omit(x))
-    , ncol = ncol(p.values), byrow = FALSE),
-  row.names = names(grabs[,data_fields])[1:(length(names(grabs[,data_fields])) - 1)])
-
-sig.xy <- which(p.values <= 0.05, arr.ind = TRUE)
-grabs_cor[sig.xy] <- paste0(grabs_cor[sig.xy], "*")
-
-names(grabs_cor) <- names(grabs[,data_fields])[2:length(names(grabs[,data_fields]))]
-names(grabs_cor)[1:(ncol(grabs_cor) - 1)] <- c(toupper(
-  names(grabs_cor)[1:(ncol(grabs_cor) - 3)]), "NH4", "NO3")
-rownames(grabs_cor) <- c(
-                      "PP", 
-                      names(grabs_cor)[1:(length(names(grabs_cor)) - 1)])
-
-knitr::kable(grabs_cor)
