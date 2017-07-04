@@ -267,18 +267,20 @@ Our mapping technique resolved critical details about the spatial variability of
 % dt <- dt[c(1, 2, 3, 6, 7), c(1, 2, 3, 6, 7)]
 % xtable(dt)
 % table caption is above the table
-\caption{Correlation matrix of water quality parameters for selected Florida Bay basins. TP = total phosphorus, TDP = total dissolved phosphorus, PO4 = ortho-phosphate, TN = total nitrogen, chla = chlorophyll a, PP = particulate phosphorus. $**$ indicates a significant correlation at P $<$ 0.001}
+\caption{Correlation matrix of water quality parameters for selected Florida Bay basins. TP = total phosphorus, TDP = total dissolved phosphorus, PO4 = ortho-phosphate, TN = total nitrogen, NH4 = ammonium, NO3 = nitrate, chla = chlorophyll a, PP = particulate phosphorus. $*$ indicates a significant correlation at P $<$ 0.05. Only complete cases were used in calculations (n = 86).}
 \label{tab:1}       % Give a unique label
 % For LaTeX tables use
-\begin{tabular}{llllll}
+\begin{tabular}{llllllll}
 \hline\noalign{\smallskip}
-& TP & TDP & PO4 & TN & chla \\
+& TP & TDP & PO4 & TN & NH4 & NO3 & chla \\ 
 \noalign{\smallskip}\hline\noalign{\smallskip}
-PP & 0.68** & 0.20 & 0.34 & 0.78** & 0.90** \\ 
-TP  &  & 0.65** & 0.51** & 0.51** & 0.74** \\ 
-TDP  &  &  & 0.48** & 0.09 & 0.28 \\ 
-PO4  &  &  &  & 0.97** & 0.63** \\ 
-TN  &  &  &  &  & 0.67** \\ 
+PP & 0.68* & 0.20 & 0.34* & 0.78* & 0.14 & -0.11 & 0.90* \\ 
+TP  &  & 0.65* & 0.51* & 0.51* & 0.16 & 0.08 & 0.74* \\ 
+TDP  &  &  & 0.48* & 0.09 & 0.18 & 0.30* & 0.28* \\
+PO4  &  &  &  & 0.36* & 0.16 & 0.19 & 0.40* \\ 
+TN  &  &  &  &  & 0.17 & -0.12 & 0.67* \\ 
+NH4 &  &  &  &  &  & 0.55* & 0.19 \\
+NO3 &  &  &  &  &  &  & 0.02 \\ 
 \noalign{\smallskip}\hline
 \end{tabular}
 \end{table}
