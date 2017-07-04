@@ -98,7 +98,7 @@ figures/trout.png: code/trout_creek_salinity_acf.R
 
 # tables     #######################################################
 
-tables: manuscripts/est_coast/table_1.tex ## create tables
+tables: manuscripts/est_coast/table_1.tex manuscripts/est_coast/table_2.tex ## create tables
 	@echo "tables built"
 
 tables/grabs_cor.csv: data/allgrabs_log.csv code/cormat.R
@@ -106,9 +106,16 @@ tables/grabs_cor.csv: data/allgrabs_log.csv code/cormat.R
 	
 tables/grabs_pvalues.csv: data/allgrabs_log.csv code/cormat.R
 	Rscript code/cormat.R
-	
+
 manuscripts/est_coast/table_1.tex: tables/grabs_cor.csv tables/grabs_pvalues.csv code/prep_table-1.R
 	Rscript code/prep_table-1.R
+	
+tables/modelfits.csv: code/modelfits.R
+	Rscript code/modelfits.R
+
+manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R
+	Rscript code/prep_table-2.R
+
 
 # manuscript #######################################################
 

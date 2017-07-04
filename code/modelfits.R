@@ -1,5 +1,6 @@
 library(DataflowR)
 
+fdir <- getOption("fdir")
 dt <- read.csv(file.path(fdir,"DF_GrabSamples","extractChlcoef2.csv"), 
                row.names = NULL)
 
