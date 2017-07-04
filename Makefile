@@ -96,9 +96,20 @@ figures/trout.png: code/trout_creek_salinity_acf.R
 	montage figures/fbmap_trout.png figures/trout_creek_salinity_acf.png \
 		-geometry +2+2 -tile 2x -gravity south figures/trout.png
 
+# tables     #######################################################
+
+tables: tables/grabs_cor.csv tables/grabs_pvalues.csv ## create tables
+	@echo "tables built"
+	
+tables/grabs_cor.csv: data/allgrabs_log.csv code/cormat.R
+	Rscript code/cormat.R
+	
+tables/grabs_pvalues.csv: data/allgrabs_log.csv code/cormat.R
+	Rscript code/cormat.R
+
 # manuscript #######################################################
 
-ms: data figures clean ## compile ms
+ms: data figures tables clean ## compile ms
 	pandoc $(md) -o manuscripts/dataflowchl.tex $(pflags)
 	pdflatex manuscripts/dataflowchl.tex
 	
