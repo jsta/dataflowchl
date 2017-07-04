@@ -5,7 +5,7 @@ grabs$location <- factor(grabs$location, levels = c("Whipray Basin", "Rankin", "
 metadata_fields <- c("date", "time", "location", "lat_dd", "lon_dd")
 # data_fields <-   c("salt", "chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn", "chlaiv", "temp", "cond", "sal", "trans", "cdom", "brighteners", "phycoe", "phycoc", "c6chl", "c6cdom", "c6turbidity", "c6temp")
 # data_fields <-   c("chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn")
-data_fields <-   c("pp", "tp", "tdp", "po4", "din", "ton", "tn", "chla")
+data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "nh4um", "no3um", "chla")
 
 grabs_cor <- grabs[,data_fields]
 grabs_cor <- grabs_cor[complete.cases(grabs_cor),]
@@ -20,10 +20,10 @@ grabs_cor <- matrix(round(cor(grabs_cor, method = "spearman"), 2), ncol = ncol(g
 
 grabs_cor[lower.tri(grabs_cor)] <- NA
 
-grabs_cor[seq(from = 1, to = length(grabs_cor), by = dim(grabs_cor) + 1)] <- NA
+grabs_cor[seq(from = 1, to = length(grabs_cor), by = dim(grabs_cor)[1] + 1)] <- NA
 
 p.values[lower.tri(p.values)] <- NA
-p.values[seq(from = 1, to = length(p.values), by = dim(p.values) + 1)] <- NA
+p.values[seq(from = 1, to = length(p.values), by = dim(p.values)[1] + 1)] <- NA
 
 #grabs_cor <- matrix(as.character(grabs_cor), ncol = ncol(grabs_cor))
 
@@ -36,6 +36,8 @@ p.values <- p.values[1:(nrow(p.values) - 1), 2:ncol(p.values)]
 # write.csv(apply(grabs_cor, 2, function(x) vapply(x, paste, collapse = ", ", character(1L))), "tables/grabs_cor.csv", row.names = FALSE)
 
 names(grabs_cor) <- names(grabs[,data_fields])[2:length(names(grabs[,data_fields]))]
+names(grabs_cor)[1:(ncol(grabs_cor) - 1)] <- c(toupper(
+  names(grabs_cor)[1:(ncol(grabs_cor) - 3)]), "NH4", "NO3")
 
 write.csv(grabs_cor, "tables/grabs_cor.csv", row.names = FALSE)
 write.csv(p.values, "tables/grabs_pvalues.csv", row.names = FALSE)
@@ -52,9 +54,14 @@ p.values <- data.frame(
     , ncol = ncol(p.values), byrow = FALSE),
   row.names = names(grabs[,data_fields])[1:(length(names(grabs[,data_fields])) - 1)])
 
-sig.xy <- which(p.values <= 0.001, arr.ind = TRUE)
+sig.xy <- which(p.values <= 0.05, arr.ind = TRUE)
 grabs_cor[sig.xy] <- paste0(grabs_cor[sig.xy], "*")
 
 names(grabs_cor) <- names(grabs[,data_fields])[2:length(names(grabs[,data_fields]))]
+names(grabs_cor)[1:(ncol(grabs_cor) - 1)] <- c(toupper(
+  names(grabs_cor)[1:(ncol(grabs_cor) - 3)]), "NH4", "NO3")
+rownames(grabs_cor) <- c(
+                      "PP", 
+                      names(grabs_cor)[1:(length(names(grabs_cor)) - 1)])
 
 knitr::kable(grabs_cor)
