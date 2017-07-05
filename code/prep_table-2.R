@@ -21,14 +21,33 @@ dt$yearmon <-
                                         "-",
                                  substring(x, 5, 6)))
 
+# knitr ####
+dt <- data.frame(
+  matrix(
+    sapply(unlist(dt), function(x) na.omit(x))
+    , ncol = ncol(dt), byrow = FALSE))
 
-kable(dt, format = "latex", booktabs = TRUE, 
-      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression.") %>% 
-  add_header_above(c(" ", "Primary" = 2, "Secondary" = 4))
-                                                                                                                                                                                                                                                                               
+names(dt) <- c("Date", 
+               "CDOM", "chla",
+               "PE", "chla", "CDOM", "PC", 
+               "intercept", "$R^2$", "p", "n")
 
-names(dt) <- c("Date", "CDOM")
 
+dt$p[grep("<", unlist(dt$p))] <- paste0("\\textless", 
+                      rep("0.01", length(dt$p[grep("<", unlist(dt$p))])))
+
+file.create("manuscripts/est_coast/table_2.tex")
+fileConn <- file("manuscripts/est_coast/table_2.tex")
+writeLines(kable(dt, format = "latex", booktabs = TRUE, 
+      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression.", escape = FALSE) %>% 
+  add_header_above(c(" ", "Primary" = 2, "Secondary" = 4)), fileConn)
+close(fileConn)
+
+# xtable ####
+# names(dt) <- c("Date", 
+#                "CDOM", "chla",
+#                "PE", "chla", "CDOM", "PC", 
+#                "intercept", "$R^2$", "p", "n")
 # print(xtable(dt, caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression."
 # ), 
 #       file = "manuscripts/est_coast/table_2.tex",
