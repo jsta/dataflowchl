@@ -39,7 +39,7 @@ dt$p[grep("<", unlist(dt$p))] <- paste0("\\textless",
 file.create("manuscripts/est_coast/table_2.tex")
 fileConn <- file("manuscripts/est_coast/table_2.tex")
 writeLines(kable(dt, format = "latex", booktabs = TRUE, 
-      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. Also given is the coefficient of determination (R2) and p-value of each regression.", escape = FALSE) %>% 
+      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. CDOM = colored dissolved organic matter, PE = phycoerythrin, PC = phycocyanin. Also given is the coefficient of determination $R^2$ and p-value of each regression.", escape = FALSE) %>% 
   add_header_above(c(" ", "Primary" = 2, "Secondary" = 4)), fileConn)
 close(fileConn)
 
