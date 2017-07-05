@@ -2,6 +2,7 @@
 library(knitr)
 library(kableExtra)
 library(magrittr)
+options(knitr.kable.NA = '')
 
 dt <- read.csv("tables/modelfits.csv", stringsAsFactors = FALSE)
 dt <- dt[order(dt$yearmon),]
@@ -22,10 +23,10 @@ dt$yearmon <-
                                  substring(x, 5, 6)))
 
 # knitr ####
-dt <- data.frame(
-  matrix(
-    sapply(unlist(dt), function(x) na.omit(x))
-    , ncol = ncol(dt), byrow = FALSE))
+# dt <- data.frame(
+#   matrix(
+#     sapply(unlist(dt), function(x) na.omit(x))
+#     , ncol = ncol(dt), byrow = FALSE))
 
 names(dt) <- c("Date", 
                "CDOM", "chla",
@@ -39,7 +40,7 @@ dt$p[grep("<", unlist(dt$p))] <- paste0("\\textless",
 file.create("manuscripts/est_coast/table_2.tex")
 fileConn <- file("manuscripts/est_coast/table_2.tex")
 writeLines(kable(dt, format = "latex", booktabs = TRUE, 
-      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. CDOM = colored dissolved organic matter, PE = phycoerythrin, PC = phycocyanin. Also given is the coefficient of determination $R^2$ and p-value of each regression.", escape = FALSE) %>% 
+      caption = "Model coefficients for regressions between Dataflow and chlorophyll concentration of discrete grab samples. CDOM = colored dissolved organic matter, PE = phycoerythrin, PC = phycocyanin. Also given is the coefficient of determination $R^2$ and p-value of each regression.", escape = FALSE, digits = 3) %>% 
   add_header_above(c(" ", "Primary" = 2, "Secondary" = 4)), fileConn)
 close(fileConn)
 
