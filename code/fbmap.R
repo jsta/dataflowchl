@@ -70,8 +70,8 @@ gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(x = long, y = 
 gg <- gg + geom_map(data = zone_poly, map = zone_poly, aes(x = long, y = lat,  map_id = id), alpha = 0.4, fill = "black", color = "black")
 gg <- gg + geom_text(data = zone_poly_centroids, aes(label = ZoneName, x = long, y = lat), size = 4, color = "red", fontface = "bold", position = position_nudge(y = 900))
 gg <- gg + geom_point(data = data.frame(coordinates(coordinatize(dbhydro_grabs))), aes(x = londec, y = latdec), size = 2, fill = "red", color = "red")
-gg + theme_opts
-
+gg_wqmn <- gg + theme_opts
+gg_wqmn
 ggsave("figures/fbmap_wqmn.png", width = 4, height = 3)
 
 ## Dataflow Grab Map ####
@@ -84,9 +84,15 @@ gg <- gg + geom_text(data = fathombasins_centroids, aes(label = ZoneName, x = lo
 
 gg <- gg + geom_point(data = fathombasins_centroids, aes(x = long, y = lat), size = 2, fill = "red", color = "black")
 
-gg + theme_opts + scalebar(dist = 10, location = "bottomright", st.size = 3, x.min = 515000, x.max = 565000, y.min = 2772200, y.max = 2800000)
-
+gg_df <- gg + theme_opts + scalebar(dist = 10, location = "bottomright", st.size = 3, x.min = 515000, x.max = 565000, y.min = 2772200, y.max = 2800000)
+gg_df
 ggsave("figures/fbmap_dflow.png", width = 4, height = 3)
+
+library(cowplot)
+
+plot_grid(gg_df, gg_wqmn, ncol = 1, labels = "auto", hjust = -4.8, vjust = 3)
+ggsave("figures/fbmap.png", width = 4, height = 6)
+# 
 
 ggsn::north(fboutline.df, location = "topleft", symbol = 1, scale = 0.2)
 #===============================================================#

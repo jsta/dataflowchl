@@ -63,14 +63,14 @@ figures/multipanel_mb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed t
 figures/multipanel_jb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed to Joe Bay
 	Rscript --default-packages=methods,utils code/multipanel_jb.R	
 
-figures/fbmap_dflow.png: ## create Florida Bay basemap with dflow grab points
+figures/fbmap_dflow.png: code/fbmap.R ## create Florida Bay basemap with dflow grab points
 	Rscript code/fbmap.R
 
-figures/fbmap_wqmn.png: ## create Florida Bay basemap with wqmn grab points
+figures/fbmap_wqmn.png: code/fbmap.R ## create Florida Bay basemap with wqmn grab points
 	Rscript code/fbmap.R
 
-figures/fbmap.png: figures/fbmap_wqmn.png figures/fbmap_dflow.png ## create 2 panel Florida Bay basemap with grab points
-	montage figures/fbmap_dflow.png figures/fbmap_wqmn.png -geometry +2+2 -tile x2 figures/fbmap.png
+figures/fbmap.png: code/fbmap.R  ## create 2 panel Florida Bay basemap with grab points
+	Rscript code/fbmap.R
 	convert figures/fl-inset_border.png -resize 12% -bordercolor black :- | convert figures/fbmap.png -page +870+1470 - -gravity east -flatten figures/fbmap.png
 
 
