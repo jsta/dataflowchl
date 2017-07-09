@@ -52,11 +52,22 @@ names(zone_poly_centroids) <- c("ZoneName", "long", "lat")
 zone_poly_centroids[,2:3] <- apply(zone_poly_centroids[,2:3], 2, function(x) as.numeric(as.character(x)))
 zone_poly <- ggplot2::fortify(zone_poly, region = "zonename")
 
+# surveytrack <- coordinatize(streamget(201507), latname = "lat_dd", 
+#                             lonname = "lon_dd")
+# surveytrack <- data.frame(surveytrack)[,c("lon_dd", "lat_dd")]
+# surveytrack <- surveytrack[sample(seq_len(nrow(surveytrack)), 
+#                                   nrow(surveytrack) * 0.5),]
+# surveytrack$id <- "1"
+# names(surveytrack)[1:2] <- c("x", "y")
+
 ## WQMN Grab Map ####
 gg <- ggplot()
 gg <- gg + geom_rect(aes(xmin = 515000, xmax = 568000, ymin = 2770000, ymax = 2800000), linetype = 1, colour = "black", fill = "white")
 gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(x = long, y = lat, map_id = id), color = "black", alpha = 0.8)
-gg <- gg + geom_map(data = zone_poly, map = zone_poly, aes(x = long, y = lat,  map_id = id), alpha = 0.4, fill = "grey", color = "black")
+# gg <- gg +  geom_point(data = surveytrack, aes(x = x, y = y), 
+#                        shape = 21, size = 1, colour = "black", 
+#                        fill = "black", alpha = 0.15)
+gg <- gg + geom_map(data = zone_poly, map = zone_poly, aes(x = long, y = lat,  map_id = id), alpha = 0.4, fill = "black", color = "black")
 gg <- gg + geom_text(data = zone_poly_centroids, aes(label = ZoneName, x = long, y = lat), size = 4, color = "red", fontface = "bold", position = position_nudge(y = 900))
 gg <- gg + geom_point(data = data.frame(coordinates(coordinatize(dbhydro_grabs))), aes(x = londec, y = latdec), size = 2, fill = "red", color = "red")
 gg + theme_opts
