@@ -35,8 +35,11 @@ fathombasins_centroids[,2:3] <- apply(fathombasins_centroids[,2:3], 2, function(
 fathombasins <- ggplot2::fortify(fathombasins, region = "ZoneName")
 
 dbhydro_grabs <- read.csv("data/dbhydt.csv", stringsAsFactors = FALSE)
-dbhydro_grabs <- dbhydro_grabs[dbhydro_grabs$zone %in% c("FBE", "FBC", "BB"), c("site", "zone", "latdec", "londec")]
-dbhydro_grabs <- suppressWarnings(aggregate(dbhydro_grabs, list(site = dbhydro_grabs[,"site"], zone = dbhydro_grabs[,"zone"]), mean)[,c(1,2,5,6)])
+dbhydro_grabs <- dbhydro_grabs[dbhydro_grabs$zone %in% c("FBE", "FBC", "BS"), c("site", "zone", "latdec", "londec")]
+dbhydro_grabs[dbhydro_grabs$zone == "BS", "zone"] <- "BB"
+dbhydro_grabs <- suppressWarnings(aggregate(dbhydro_grabs, 
+                  list(site = dbhydro_grabs[,"site"], 
+                       zone = dbhydro_grabs[,"zone"]), mean)[,c(1,2,5,6)])
 
 zone_poly <- lapply(unique(dbhydro_grabs$zone), function(x){
   zone_sub <- coordinatize(dbhydro_grabs[dbhydro_grabs$zone == x,])
