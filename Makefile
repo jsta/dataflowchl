@@ -95,6 +95,9 @@ figures/trout.png: code/trout_creek_salinity_acf.R
 	Rscript code/trout_creek_salinity_acf.R
 	montage figures/fbmap_trout.png figures/trout_creek_salinity_acf.png \
 		-geometry +2+2 -tile 2x -gravity south figures/trout.png
+		
+figures/boundaries.png: code/boundaries.R data/goodyears.csv
+	Rscript code/boundaries.R 
 
 # tables     #######################################################
 

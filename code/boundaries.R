@@ -42,3 +42,5 @@ ggplot(test) +
             position = position_jitter(height = 2)) + 
   labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date") + 
   hrbrthemes::theme_ipsum()
+
+ggsave("figures/boundaries.png")
