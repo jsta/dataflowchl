@@ -10,6 +10,8 @@
  * viridis
  * sp
  * remake
+ * gdalUtils
+ * sf
 
 ## Build
 `$ make help`
