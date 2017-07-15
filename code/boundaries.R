@@ -35,12 +35,19 @@ labs <- data.frame(x = tapply(test$x, test$yearmon, function(x) nth(x, -1L)),
 labs <- labs[order(labs$x),]
 labs$y <- seq(log(1.5), log(max(test$y)), length.out = length(goodyears))
 
+format_labels <- function(x){
+  strftime(as.character(as.Date(paste0(x, "01"), format = "%Y%m%d")), format = "%b %Y")
+}
+
 ggplot(test) + 
   geom_line(aes(x, log(y), colour = yearmon)) + 
   #scale_y_reverse(lim = c(10, 0)) + 
   geom_text(data = labs, aes(x, log(y), label = lab), 
             position = position_jitter(height = 2)) + 
   labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date") + 
-  hrbrthemes::theme_ipsum()
+  hrbrthemes::theme_ipsum() + 
+  scale_color_hue(labels = c(format_labels(unlist(goodyears)))) + 
+  theme(axis.line = element_line()) + 
+  scale_x_reverse(lim = c(5, 0))
 
 ggsave("figures/boundaries.png")
