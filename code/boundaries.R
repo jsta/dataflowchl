@@ -3,6 +3,7 @@ library(raster)
 library(gdalUtils)
 library(ggplot2)
 library(dplyr)
+library(hrbrthemes)
 
 fdir <- getOption("fdir")
 goodyears <- read.csv("data/goodyears.csv", stringsAsFactors = FALSE)
@@ -39,4 +40,5 @@ ggplot(test) +
   #scale_y_reverse(lim = c(10, 0)) + 
   geom_text(data = labs, aes(x, log(y), label = lab), 
             position = position_jitter(height = 2)) + 
-  labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date")
+  labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date") + 
+  hrbrthemes::theme_ipsum()
