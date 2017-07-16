@@ -73,7 +73,6 @@ figures/fbmap.png: code/fbmap.R  ## create 2 panel Florida Bay basemap with grab
 	Rscript code/fbmap.R
 	convert figures/fl-inset_border.png -resize 12% -bordercolor black :- | convert figures/fbmap.png -page +870+1470 - -gravity east -flatten figures/fbmap.png
 
-
 figures/rain.png: data/rain/NexradRainData.txt ## create rain time-series figure
 	Rscript R/rain.R
 
