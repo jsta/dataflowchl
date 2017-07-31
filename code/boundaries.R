@@ -40,21 +40,32 @@ format_labels <- function(x){
   strftime(as.character(as.Date(paste0(x, "01"), format = "%Y%m%d")), format = "%b %Y")
 }
 
-# test <- ungroup(test)
 test <- dplyr::group_by(test, yearmon)
 
+range01 <- function(x){
+  (x - min(x, na.rm = FALSE)) / 
+    (max(x, na.rm = FALSE) - min(x, na.rm = FALSE))
+  }
+
+test$y <- log(test$y)
+test[test$y == -Inf, "y"] <- 0
+test$y <- range01(test$y)
+
 ggplot(test) + 
-  geom_line(aes(x, log(y), colour = yearmon)) + 
+  geom_line(aes(x, y, colour = yearmon)) + 
   #scale_y_reverse(lim = c(10, 0)) + 
   geom_label_repel(data = filter(test, x == max(x)), 
-                   aes(x, log(y), label = yearmon)) + 
-  labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date") + 
+                   aes(x, y, label = yearmon, color = yearmon), 
+                   fontface = 'bold', segment.color = "grey50", 
+                   segment.alpha = 0.5) + 
+  labs(x = "Percent Slope (%)", y = "Proportion(log(Count))", colour = "Date") + 
   theme_classic() + 
   scale_color_hue(labels = c(format_labels(unlist(goodyears)))) + 
   theme(axis.line = element_line(), 
         panel.grid = element_blank(), 
         axis.text = element_text(size = 14), 
         axis.title = element_text(size = 14)) + 
-  scale_x_reverse(lim = c(5, 0))
+  scale_x_reverse(lim = c(5, 0)) + 
+  guides(color = guide_legend(ncol = 2))
 
-ggsave("figures/boundaries.png")
+ggsave("figures/boundaries.png", width = 20, height = 12.5, units = "cm")
