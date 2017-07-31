@@ -79,13 +79,13 @@ figures/fbmap.png: code/fbmap.R  ## create 2 panel Florida Bay basemap with grab
 	convert figures/fl-inset_border.png -resize 12% -bordercolor black :- | convert figures/fbmap.png -page +870+1470 - -gravity east -flatten figures/fbmap.png
 
 figures/rain.png: data/rain/NexradRainData.txt ## create rain time-series figure
-	Rscript R/rain.R
+	Rscript code/rain.R
 
 figures/chlboxplot.png: ## create chlorophyll boxplot
-	Rscript R/chlboxplot.R
+	Rscript code/chlboxplot.R
 
-figures/nonchlboxplot.png: ## create non-chlorophyll boxplot
-	Rscript R/nonchlboxplot.R
+figures/nonchlboxplot.png: code/nonchlboxplot.R ## create non-chlorophyll boxplot
+	Rscript code/nonchlboxplot.R
 
 figures/chltimeseries.png: data/dbhydt.csv code/chltimeseries.R ## create chlorophyll time-series plot 
 	Rscript code/chltimeseries.R
@@ -128,7 +128,7 @@ manuscripts/est_coast/table_1.tex: tables/grabs_cor.csv tables/grabs_pvalues.csv
 tables/modelfits.csv: code/modelfits.R
 	Rscript code/modelfits.R
 
-manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R
+manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## Table 2
 	Rscript code/prep_table-2.R
 
 

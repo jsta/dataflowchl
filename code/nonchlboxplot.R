@@ -6,8 +6,8 @@ grabs$location <- factor(grabs$location, levels = c("Whipray Basin", "Rankin", "
 
 metadata_fields <- c("date", "time", "location", "lat_dd", "lon_dd")
 #data_fields <-   c("salt", "chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn", "chlaiv", "temp", "cond", "sal", "trans", "cdom", "brighteners", "phycoe", "phycoc", "c6chl", "c6cdom", "c6turbidity", "c6temp")
-data_fields <-   c("chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn")
-data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "chla", "np_ratio")
+# data_fields <-   c("chla", "tss", "pp", "tp", "tdp", "po4", "toc", "doc", "tkn", "tdkn")
+data_fields <-   c("pp", "tp", "tdp", "po4", "tn", "chla", "np_ratio", "c6cdom")
 
 grabs <-  reshape2::melt(grabs[,c(metadata_fields, data_fields)], id = metadata_fields)
 
@@ -42,16 +42,17 @@ tp,TP (uM)
 tdp,TDP (uM)
 po4,PO4 (uM)
 tn,TN (uM)
-np_ratio,'NP Ratio'", sep = ",", header = FALSE, col.names = c("variable", "variable_long"), stringsAsFactors = FALSE)
+np_ratio,'NP Ratio'
+c6cdom,'CDOM'", sep = ",", header = FALSE, col.names = c("variable", "variable_long"), stringsAsFactors = FALSE)
 param_names[,"variable_long"] <- gsub("u", "\U03BC", param_names[,2])
 
 grabs <- merge(grabs, param_names)
 
-grabs$variable_long <- factor(grabs$variable_long, levels = c("PP (\U03BCM)", "TP (\U03BCM)", "TDP (\U03BCM)", "TN (\U03BCM)", "PO4 (\U03BCM)", "chla", "NP Ratio"))
+grabs$variable_long <- factor(grabs$variable_long, levels = c("PP (\U03BCM)", "TP (\U03BCM)", "TDP (\U03BCM)", "TN (\U03BCM)", "PO4 (\U03BCM)", "chla", "NP Ratio", "CDOM"))
 
 gg <- ggplot(grabs[grabs$variable_long != "chla",], aes(x = location, y = value))
 gg <- gg + geom_boxplot(outlier.shape = NA)
-gg <-  gg + facet_wrap(~variable_long, scales = "free_y", ncol = 2) + ylab("")
+gg <- gg + facet_wrap(~variable_long, scales = "free_y", ncol = 2) + ylab("")
 gg <- gg + theme_opts
 gg
 ggsave("figures/nonchlboxplot.png", width = 4.5, height = 6)
