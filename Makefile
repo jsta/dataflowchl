@@ -49,7 +49,7 @@ data/flow/ENPOps_flow.csv: ## pull USGS flow data from NWIS
 
 # figures #######################################################
 
-figures: figures/multipanel.png figures/multipanel_mb.png figures/fbmap.png figures/rain.png figures/chlboxplot.png figures/nonchlboxplot.png ## create figures
+figures: figures/multipanel.png figures/multipanel_mb.png figures/fbmap.png figures/rain.png figures/chlboxplot.png figures/nonchlboxplot.png figures/trout.png ## create figures
 	@echo "figures built"
 
 figures/multipanel.png: $(SURFACE_PATHS) code/multipanel.R ## create multipanel figure
@@ -85,15 +85,23 @@ figures/nonchlboxplot.png: ## create non-chlorophyll boxplot
 figures/chltimeseries.png: data/dbhydt.csv code/chltimeseries.R ## create chlorophyll time-series plot 
 	Rscript code/chltimeseries.R
 
-figures/avmap.png: code/avmap.R ## create average chl and phycoc maps
+figures/phycoc.png: code/avmap.R
 	Rscript code/avmap.R
-	montage chlext.png phycoc.png -geometry +2+2 -tile x2 figures/avmap.png
-	#rm tile.png chlext.png phycoc.png
+
+figures/chlext.png: code/avmap.R 
+	Rscript code/avmap.R
+
+figures/avmap.png: figures/phycoc.png figures/chlext.png ## create average chl and phycoc maps
+	convert phycoc.png -gravity South -crop 100x94%+0+0 phycoc_crop.png
+	convert chlext.png -gravity South -crop 100x94%+0+0 chlext_crop.png
+	montage chlext_crop.png phycoc_crop.png -geometry +2+2 -tile x2 \
+		figures/avmap.png
+	-rm chlext_crop.png phycoc_crop.png
 
 figures/trout.png: code/trout_creek_salinity_acf.R
 	Rscript code/trout_creek_salinity_acf.R
 	montage figures/fbmap_trout.png figures/trout_creek_salinity_acf.png \
-		-geometry +2+2 -tile 2x -gravity south figures/trout.png
+		-geometry +2+2 -tile 2x -gravity south -trim figures/trout.png
 		
 figures/boundaries.png: code/boundaries.R data/goodyears.csv
 	Rscript code/boundaries.R 
