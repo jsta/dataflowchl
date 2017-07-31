@@ -4,6 +4,7 @@ library(gdalUtils)
 library(ggplot2)
 library(dplyr)
 library(hrbrthemes)
+library(ggrepel)
 
 fdir <- getOption("fdir")
 goodyears <- read.csv("data/goodyears.csv", stringsAsFactors = FALSE)
@@ -39,15 +40,21 @@ format_labels <- function(x){
   strftime(as.character(as.Date(paste0(x, "01"), format = "%Y%m%d")), format = "%b %Y")
 }
 
+# test <- ungroup(test)
+test <- dplyr::group_by(test, yearmon)
+
 ggplot(test) + 
   geom_line(aes(x, log(y), colour = yearmon)) + 
   #scale_y_reverse(lim = c(10, 0)) + 
-  geom_text(data = labs, aes(x, log(y), label = lab), 
-            position = position_jitter(height = 2)) + 
+  geom_label_repel(data = filter(test, x == max(x)), 
+                   aes(x, log(y), label = yearmon)) + 
   labs(x = "Percent Slope (%)", y = "log(Count)", colour = "Date") + 
-  hrbrthemes::theme_ipsum() + 
+  theme_classic() + 
   scale_color_hue(labels = c(format_labels(unlist(goodyears)))) + 
-  theme(axis.line = element_line()) + 
+  theme(axis.line = element_line(), 
+        panel.grid = element_blank(), 
+        axis.text = element_text(size = 14), 
+        axis.title = element_text(size = 14)) + 
   scale_x_reverse(lim = c(5, 0))
 
 ggsave("figures/boundaries.png")
