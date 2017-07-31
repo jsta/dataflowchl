@@ -1,12 +1,12 @@
 library(dataRetrieval)
-library(wq)
+library(wql)
 
 # 251253080320100 = mouth of trout creek
 # 00480 = bottom salinity
 
 dt2 <- readNWISdata(service = "dv", sites = "251253080320100", parameterCd = "00480", startDate = "2008-08-01", endDate = "2015-09-01")
 
-dt3 <- wq::interpTs(dt2$X_YSI.near.bottom_00480_00003, "linear")
+dt3 <- wql::interpTs(dt2$X_YSI.near.bottom_00480_00003, "linear")
 
 png("figures/trout_creek_salinity_acf.png")
 acf(dt3, lag.max = 14, main = "ACF of Trout Creek Salinity")
@@ -49,13 +49,17 @@ trout_coords <- coordinatize(trout_coords, "lat", "lon")
 trout_coords <- data.frame(coordinates(trout_coords))
 trout_coords$label <- "Trout Creek"
 
+stream <- DataflowR::streamget(201509)
+stream <- coordinatize(stream, "lat_dd", "lon_dd")
+stream_coords <- data.frame(coordinates(stream))
+
 gg <- ggplot()
 gg <- gg + geom_rect(aes(xmin = 515000, xmax = 568000, ymin = 2770000, ymax = 2800000), linetype = 1, colour = "black", fill = "white")
-gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(x = long, y = lat, map_id = id), color = "black", alpha = 0.8)
+gg <- gg + geom_map(data = fboutline.df, map = fboutline.df , aes(map_id = id), color = "black", alpha = 0.8)
+gg <- gg + geom_point(data = stream_coords, aes(x = lon_dd, y = lat_dd), size = 0.5, alpha = 0.4, color = "gray")
 gg <- gg + geom_point(data = trout_coords, aes(x = lon, y = lat), fill = "red", size = 0.8, color = "red")
 gg <- gg + geom_text(data = trout_coords, aes(label = label, x = lon, y = lat), size = 2, color = "red", fontface = "bold", position = position_nudge(y = 900))
 
 gg + theme_opts
 
 ggsave("figures/fbmap_trout.png", width = 2, height = 1.5)
-
