@@ -56,6 +56,11 @@ figures/multipanel.png: $(SURFACE_PATHS) code/multipanel.R ## create multipanel 
 	Rscript code/multipanel.R
 	convert multipanel.png -gravity North -chop 0x85 figures/multipanel.png
 	-rm multipanel.png
+
+figures/multipanel_salinity.png: code/multipanel_salinity.R ## create salinity multipanel
+	Rscript code/multipanel_salinity.R
+	convert multipanel.png -gravity North -chop 0x85 figures/multipanel_salinity.png
+	-rm multipanel.png
 	
 figures/multipanel_mb.png: $(SURFACE_PATHS) ## create multipanel figure zoomed to Manatee Bay
 	Rscript --default-packages=methods,utils R/multipanel_mb.R	
