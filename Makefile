@@ -6,7 +6,7 @@ refs=manuscripts/dataflowchl.bib
 pflags= --template=manuscripts/template.tex --bibliography=$(refs) --csl=$(csl) 
 
 #BASE_PATH=/home/jose/Documents/Science/Data/Dataflow
-#GOODYEARS=200808 200910 201002 201004 201007 201102 201105 201206 201209 201212 201305 201308 201311 201404 201407 201410 201502 201505 201507 201509
+#GOODYEARS=200808 200910 201004 201007 201102 201105 201206 201209 201212 201305 201308 201311 201404 201407 201410 201502 201505 201507 201509
 #SURFACE_PATHS = $(foreach yearmon, $(GOODYEARS), $(BASE_PATH)/DF_Surfaces/$(yearmon)/chlext.tif)
 #DATA_PATHS = $(foreach yearmon, $(GOODYEARS), $(BASE_PATH)/DF_FullDataSets/$(yearmon)j.csv)
 
@@ -27,7 +27,7 @@ convert_docx: ## convert docx ms to markdown
 data: data/goodyears.csv data/allstreaming.csv data/allgrabs.csv ## copy data from archives
 	@echo "data pulled"
 
-data/goodyears.csv: ## listing of surveys with good spatial coverage
+data/goodyears.csv: code/goodyears.R  ## listing of surveys with good spatial coverage
 	Rscript -e "source('code/goodyears.R')"	
 
 data/allstreaming.csv: ## move streaming data from archive folder
