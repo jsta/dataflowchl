@@ -39,6 +39,7 @@ library(ggplot2)
 grabs_chl <- grabs[grabs$variable == "chla",]
 gg <- ggplot(grabs_chl, aes(x = location, y = value))
 gg <- gg + theme_opts
-gg + geom_boxplot(outlier.shape = NA) + ylab("Chla (ug/L)") + scale_y_continuous(limits = c(0, 20))
+gg + geom_boxplot(outlier.shape = NA) + ylab("Chla (ug/L)") + 
+  scale_y_continuous(limits = c(0, 20))
 
 ggsave("figures/chlboxplot.png", width = 4, height = 3)

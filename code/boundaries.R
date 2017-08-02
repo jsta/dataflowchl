@@ -21,7 +21,8 @@ edge_count <- function(in_path, ind){
 }
 
 format_labels <- function(x){
-  strftime(as.character(as.Date(paste0(x, "01"), format = "%Y%m%d")), format = "%b %Y")
+  strftime(as.character(as.Date(paste0(x, "01"), format = "%Y%m%d")), 
+           format = "%b %Y")
 }
 
 range01 <- function(x){

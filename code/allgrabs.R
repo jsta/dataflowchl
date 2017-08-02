@@ -17,7 +17,9 @@ dt <- dt[dt$location %in% methods::slot(fathombasins, "data")$ZoneName,]
 grabs <- dt
 grabs <- grabs[!(grabs$location %in% c("Deer Key", "Taylor River")),]
 
-grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000)+ grabs$n.num + grabs$nh4um# tkn is all org. n
+grabs$tn <- (grabs$tkn / 1000 / 14.007 * 1000000) + 
+              grabs$n.num + 
+              grabs$nh4um # tkn is all org. n
 grabs$ton <- grabs$tkn
 grabs$din <- grabs$n.num + grabs$nh4um
 grabs <- grabs[,!(names(grabs) %in% c("tkn", "tdkn"))]
@@ -43,7 +45,8 @@ get_lowerquantile <- function(quant){
 lessthan_detect_limit <- grabs[grabs$po4 < po4_detect_limit & 
                                  !is.na(grabs$po4), "po4"]
 grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"] <- 
-  exp(sapply(1:length(lessthan_detect_limit), function(x) get_lowerquantile(.1)))
+  exp(sapply(1:length(lessthan_detect_limit), 
+             function(x) get_lowerquantile(.1)))
 
 grabs$np_ratio <- grabs$tn / grabs$tp
 
