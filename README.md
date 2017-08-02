@@ -1,6 +1,6 @@
 
-Dataflow Chlorophyll Manuscript
-===============================
+Code for *Stachelek et al. (2017)*
+==================================
 
 Dependencies
 ------------
