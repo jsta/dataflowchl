@@ -16,6 +16,9 @@ pflags= --template=manuscripts/template.tex --bibliography=$(refs) --csl=$(csl)
 help:
 	@grep -E '^[a-zA-Z0-9\./\_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+help_no_color:
+	@grep -E '^[a-zA-Z0-9\./\_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "%-30s%s\n", $$1, $$2}'
+
 # convert_docx: ## convert docx ms to markdown
 # 	pandoc -f docx -t markdown manuscripts/DataflowChl.docx -o manuscripts/dataflowchl.md
 
@@ -125,7 +128,7 @@ manuscripts/est_coast/table_1.tex: tables/grabs_cor.csv tables/grabs_pvalues.csv
 tables/modelfits.csv: code/modelfits.R
 	Rscript code/modelfits.R
 
-manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## Table 2
+manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## Create table 2
 	Rscript code/prep_table-2.R
 
 

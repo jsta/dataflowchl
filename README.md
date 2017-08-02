@@ -23,28 +23,26 @@ Dependencies
 Build
 -----
 
-``` bash
-make help
-```
+`$ make help`
 
-    ## [36mdata                          [0m copy data from archives
-    ## [36mdata/goodyears.csv            [0m listing of surveys with good spatial coverage
-    ## [36mdata/allstreaming.csv         [0m move streaming data from archive folder
-    ## [36mdata/allgrabs.csv             [0m move grab data from archive folder
-    ## [36mfigures                       [0m create figures
-    ## [36mfigures/multipanel.png        [0m create multipanel figure
-    ## [36mfigures/multipanel_salinity.png[0m create salinity multipanel
-    ## [36mfigures/multipanel_mb.png     [0m create multipanel figure zoomed to Manatee Bay
-    ## [36mfigures/multipanel_jb.png     [0m create multipanel figure zoomed to Joe Bay
-    ## [36mfigures/fbmap_dflow.png       [0m create Florida Bay basemap with dflow grab points
-    ## [36mfigures/fbmap_wqmn.png        [0m create Florida Bay basemap with wqmn grab points
-    ## [36mfigures/fbmap.png             [0m create 2 panel Florida Bay basemap with grab points
-    ## [36mfigures/rain.png              [0m create rain time-series figure
-    ## [36mfigures/chlboxplot.png        [0m create chlorophyll boxplot
-    ## [36mfigures/nonchlboxplot.png     [0m create non-chlorophyll boxplot
-    ## [36mfigures/chltimeseries.png     [0m create chlorophyll time-series plot 
-    ## [36mfigures/avmap.png             [0m create average chl and phycoc maps
-    ## [36mtables                        [0m create tables
-    ## [36mmanuscripts/est_coast/table_2.tex[0m Table 2
-    ## [36mms                            [0m compile ms
-    ## [36mdiff                          [0m create latexdiff pdf
+    ## data                          copy data from archives
+    ## data/goodyears.csv            listing of surveys with good spatial coverage
+    ## data/allstreaming.csv         move streaming data from archive folder
+    ## data/allgrabs.csv             move grab data from archive folder
+    ## figures                       create figures
+    ## figures/multipanel.png        create multipanel figure
+    ## figures/multipanel_salinity.pngcreate salinity multipanel
+    ## figures/multipanel_mb.png     create multipanel figure zoomed to Manatee Bay
+    ## figures/multipanel_jb.png     create multipanel figure zoomed to Joe Bay
+    ## figures/fbmap_dflow.png       create Florida Bay basemap with dflow grab points
+    ## figures/fbmap_wqmn.png        create Florida Bay basemap with wqmn grab points
+    ## figures/fbmap.png             create 2 panel Florida Bay basemap with grab points
+    ## figures/rain.png              create rain time-series figure
+    ## figures/chlboxplot.png        create chlorophyll boxplot
+    ## figures/nonchlboxplot.png     create non-chlorophyll boxplot
+    ## figures/chltimeseries.png     create chlorophyll time-series plot 
+    ## figures/avmap.png             create average chl and phycoc maps
+    ## tables                        create tables
+    ## manuscripts/est_coast/table_2.texCreate table 2
+    ## ms                            compile ms
+    ## diff                          create latexdiff pdf

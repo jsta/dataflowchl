@@ -26,6 +26,8 @@ knitr::kable(data.frame(packages1 = c("DataflowR", "raster", "ggplot2",
 
 ## Build
 
-```{bash }
-make help
+`$ make help`
+
+```{bash echo=FALSE}
+make help_no_color
 ```
