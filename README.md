@@ -45,6 +45,6 @@ Build
     ## figures/chltimeseries.png     create chlorophyll time-series plot 
     ## figures/avmap.png             create average chl and phycoc maps
     ## tables                        create tables
-    ## manuscripts/est_coast/table_2.texCreate table 2
+    ## manuscripts/est_coast/table_2.texcreate table 2
     ## ms                            compile ms
     ## diff                          create latexdiff pdf

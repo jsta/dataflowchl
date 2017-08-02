@@ -128,7 +128,7 @@ manuscripts/est_coast/table_1.tex: tables/grabs_cor.csv tables/grabs_pvalues.csv
 tables/modelfits.csv: code/modelfits.R
 	Rscript code/modelfits.R
 
-manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## Create table 2
+manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## create table 2
 	Rscript code/prep_table-2.R
 
 
