@@ -1,6 +1,10 @@
 library(DataflowR)
+
 fdir <- getOption("fdir")
-fathombasins <- rgdal::readOGR(file.path(fdir, "DF_Basefile/fbzonesmerge.shp"),layer = "fbzonesmerge", verbose = FALSE, stringsAsFactors = FALSE)
+fathombasins <- rgdal::readOGR(file.path(fdir, 
+                                         "DF_Basefile/fbzonesmerge.shp"), 
+                               layer = "fbzonesmerge", verbose = FALSE, 
+                               stringsAsFactors = FALSE)
 goodyears <- read.csv("data/goodyears.csv", stringsAsFactors = FALSE)
 goodyears <- as.list(as.data.frame(t(goodyears)))
 
@@ -20,10 +24,12 @@ grabs <- grabs[,!(names(grabs) %in% c("tkn", "tdkn"))]
 
 # fit distribution to PO4 to fill in zeros following Helsel and Hirsh ch. 13
 library(fitdistrplus)
+
 # STEVE SAYS THAT DETECTION LIMIT IS 0.015 uM (0.5 ppb)
 # FABIOLA SAYS THAT Solorzano METHOD DETECTION LIMIT IS 0.025 uM
 po4_detect_limit <- 0.025
-greaterthan_detect_limit <- grabs[grabs$po4 > po4_detect_limit & !is.na(grabs$po4), "po4"]
+greaterthan_detect_limit <- grabs[grabs$po4 > po4_detect_limit & 
+                                    !is.na(grabs$po4), "po4"]
 fit.normal <- fitdist(greaterthan_detect_limit, "lnorm")
 
 get_lowerquantile <- function(quant){
@@ -34,17 +40,17 @@ get_lowerquantile <- function(quant){
   res
 }
 
-lessthan_detect_limit <- grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"]
-grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"] <- exp(sapply(1:length(lessthan_detect_limit), function(x) get_lowerquantile(.1)))
+lessthan_detect_limit <- grabs[grabs$po4 < po4_detect_limit & 
+                                 !is.na(grabs$po4), "po4"]
+grabs[grabs$po4 < po4_detect_limit & !is.na(grabs$po4), "po4"] <- 
+  exp(sapply(1:length(lessthan_detect_limit), function(x) get_lowerquantile(.1)))
 
 grabs$np_ratio <- grabs$tn / grabs$tp
 
-grabs[grabs$pp < 0.05 & !is.na(grabs$pp), "pp"] <-  NA# made-up detection limit
-grabs[grabs$tdp > 1.4 & !is.na(grabs$tdp), "tdp"] <-  NA# made-up detection limit
-grabs[grabs$np_ratio > 800 & !is.na(grabs$np_ratio), "np_ratio"] <-  NA# made-up detection limit
-
-
-
+# arbitrary detection limits
+grabs[grabs$pp < 0.05 & !is.na(grabs$pp), "pp"]   <-  NA 
+grabs[grabs$tdp > 1.4 & !is.na(grabs$tdp), "tdp"] <-  NA 
+grabs[grabs$np_ratio > 800 & !is.na(grabs$np_ratio), "np_ratio"] <- NA
 
 write.csv(grabs, "data/allgrabs.csv", row.names = FALSE)
 

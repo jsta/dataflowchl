@@ -16,11 +16,8 @@ pflags= --template=manuscripts/template.tex --bibliography=$(refs) --csl=$(csl)
 help:
 	@grep -E '^[a-zA-Z0-9\./\_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-
-
-convert_docx: ## convert docx ms to markdown
-	pandoc -f docx -t markdown manuscripts/DataflowChl.docx -o manuscripts/dataflowchl.md
-
+# convert_docx: ## convert docx ms to markdown
+# 	pandoc -f docx -t markdown manuscripts/DataflowChl.docx -o manuscripts/dataflowchl.md
 
 # data ####################################################	
 
@@ -36,16 +33,16 @@ data/allstreaming.csv: ## move streaming data from archive folder
 data/allgrabs.csv: code/allgrabs.R ## move grab data from archive folder
 	Rscript -e "source('code/allgrabs.R')"	
 
-data/dbhydt.csv: ## update DBHYDRO subset and move to local folder
-	cd /home/jose/Documents/Science/Data/WQMN/ && Rscript -e "remake::make('updateddb.csv')" && rsync updateddb.csv /home/jose/Documents/Science/JournalSubmissions/DataflowChl/data 
-	mv data/updateddb.csv data/dbhydt.csv
+# data/dbhydt.csv: ## update DBHYDRO subset and move to local folder
+# 	cd /home/jose/Documents/Science/Data/WQMN/ && Rscript -e "remake::make('updateddb.csv')" && rsync updateddb.csv /home/jose/Documents/Science/JournalSubmissions/DataflowChl/data 
+# 	mv data/updateddb.csv data/dbhydt.csv
 
-data/modelfits.csv: /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv ## move model fit info from archive folder
-	rsync /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv data    
-	mv data/extractChlcoef2.csv data/modelfits.csv
+# data/modelfits.csv: /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv ## move model fit info from archive folder
+# 	rsync /home/jose/Documents/Science/Data/Dataflow/DF_GrabSamples/extractChlcoef2.csv data    
+# 	mv data/extractChlcoef2.csv data/modelfits.csv
 
-data/flow/ENPOps_flow.csv: ## pull USGS flow data from NWIS
-	Rscript code/pull_usgs_flow.R
+# data/flow/ENPOps_flow.csv: ## pull USGS flow data from NWIS
+# 	Rscript code/pull_usgs_flow.R
 
 # figures #######################################################
 
@@ -141,12 +138,6 @@ ms: data figures tables clean ## compile ms
 diff: manuscripts/est_coast/dataflowchl.tex ## create latexdiff pdf
 	cd manuscripts/est_coast && make diff
 	
-#pandoc $(md) -o manuscripts/dataflowchl.tex $(pflags)
-
-
-#	Rscript -e "rmarkdown::render('DataflowChl.Rmd')"
-
-
 # finalize + cleanup ###############################################
 
 #all: render_rmd
