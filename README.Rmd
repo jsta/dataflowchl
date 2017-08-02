@@ -14,14 +14,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r echo=FALSE}
 knitr::kable(data.frame(packages1 = c("DataflowR", "raster", "ggplot2", 
-                                     "dplyr", "ggrepel", "ggsn", 
-                                     "maptools", "cowplot", "viridis", 
-                                     "sp"), 
+                                     "dplyr", "ggrepel"), 
+                        packages3 = c("ggsn", "maptools", "cowplot",
+                                      "viridis", "sp"), 
                         packages2 = c("remake", "gdalUtils", "sf", 
-                                     "fitdistrplus", "GGally", "knitr", 
-                                     "kableExtra", "magrittr", "gstat", 
-                                     "ggjoy")), 
-             col.names = c("", ""))
+                                     "fitdistrplus", "GGally"), 
+                        packages4 = c("knitr", "kableExtra", "magrittr", 
+                                      "gstat", "ggjoy")), 
+             col.names = c("", "", "", ""))
 ```
 
 ## Build

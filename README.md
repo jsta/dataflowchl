@@ -7,18 +7,13 @@ Dependencies
 
 ### R packages
 
-|           |              |
-|:----------|:-------------|
-| DataflowR | remake       |
-| raster    | gdalUtils    |
-| ggplot2   | sf           |
-| dplyr     | fitdistrplus |
-| ggrepel   | GGally       |
-| ggsn      | knitr        |
-| maptools  | kableExtra   |
-| cowplot   | magrittr     |
-| viridis   | gstat        |
-| sp        | ggjoy        |
+|           |          |              |            |
+|:----------|:---------|:-------------|:-----------|
+| DataflowR | ggsn     | remake       | knitr      |
+| raster    | maptools | gdalUtils    | kableExtra |
+| ggplot2   | cowplot  | sf           | magrittr   |
+| dplyr     | viridis  | fitdistrplus | gstat      |
+| ggrepel   | sp       | GGally       | ggjoy      |
 
 Build
 -----
