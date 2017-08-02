@@ -21,7 +21,7 @@ knitr::kable(data.frame(packages1 = c("DataflowR", "raster", "ggplot2",
                                      "fitdistrplus", "GGally", "knitr", 
                                      "kableExtra", "magrittr", "gstat", 
                                      "ggjoy")), 
-             col.names = c("packages", ""))
+             col.names = c("", ""))
 ```
 
 ## Build

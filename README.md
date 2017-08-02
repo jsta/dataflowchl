@@ -7,8 +7,8 @@ Dependencies
 
 ### R packages
 
-| packages  |              |
-|:----------|--------------|
+|           |              |
+|:----------|:-------------|
 | DataflowR | remake       |
 | raster    | gdalUtils    |
 | ggplot2   | sf           |
