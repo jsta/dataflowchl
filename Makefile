@@ -137,6 +137,9 @@ manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## T
 ms: data figures tables clean ## compile ms
 	pandoc $(md) -o manuscripts/dataflowchl.tex $(pflags)
 	pdflatex manuscripts/dataflowchl.tex
+
+diff: manuscripts/est_coast/dataflowchl.tex ## create latexdiff pdf
+	cd manuscripts/est_coast && make diff
 	
 #pandoc $(md) -o manuscripts/dataflowchl.tex $(pflags)
 
