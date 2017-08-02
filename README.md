@@ -41,3 +41,10 @@ Build
     ## manuscripts/est_coast/table_2.texCreate table 2
     ## ms                            compile ms
     ## diff                          create latexdiff pdf
+
+References
+----------
+
+**Christopher J. Madden, Joseph Stachelek, Stephen Kelly, Michelle Blaha (2017)** Florida Bay water quality estimated by underway flow-through measurement. *KNB Data Repository*. <http://dx.doi.org/10.5063/F11R6NGR>
+
+**Joseph Stachelek, Christopher J. Madden, Stephen Kelly, Michelle Blaha (submitted)**. Fine-scale relationships between phytoplankton abundance and environmental drivers in Florida Bay, USA.
