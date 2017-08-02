@@ -1,0 +1,31 @@
+---
+title: ""
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Dataflow Chlorophyll Manuscript
+
+## Dependencies
+### R packages
+
+```{r echo=FALSE}
+knitr::kable(data.frame(packages1 = c("DataflowR", "raster", "ggplot2", 
+                                     "dplyr", "ggrepel", "ggsn", 
+                                     "maptools", "cowplot", "viridis", 
+                                     "sp"), 
+                        packages2 = c("remake", "gdalUtils", "sf", 
+                                     "fitdistrplus", "GGally", "knitr", 
+                                     "kableExtra", "magrittr", "gstat", 
+                                     "ggjoy")), 
+             col.names = c("packages", ""))
+```
+
+## Build
+
+```{bash }
+make help
+```
