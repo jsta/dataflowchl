@@ -18,7 +18,8 @@ gage$date <- as.character(strftime(gage$date, format = "%Y-%m"))
 library(dplyr)
 gage <- data.frame(summarise_each(group_by(gage, date), funs(sum)))
 
-gage$date <- as.POSIXct(strptime(paste0(gage$date, "-01"), format = "%Y-%m-%d"))
+gage$date <- as.POSIXct(strptime(paste0(gage$date, "-01"), 
+                                 format = "%Y-%m-%d"))
 
 #merge gage data with raindar
 gage_v_raindar <- merge(raindar, gage)
@@ -30,7 +31,11 @@ library(ggplot2)
 gg <- ggplot(gage_v_raindar)
 gg <- gg + geom_line(aes(x = date, y = TaylorSlough))
 #gg <- gg + geom_line(aes(x = date, y = C.111.basin), color = "red")
-gg <- gg + theme_bw() + labs(x = "", y = "Watershed Precipitation (in)") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text = element_text(size = 12), axis.title = element_text(size = 12, face = "bold"))
+gg <- gg + theme_bw() + labs(x = "", y = "Watershed Precipitation (in)") + 
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 12, face = "bold"))
 gg
 ggsave("figures/rain.png", width = 4, height = 3)
 
