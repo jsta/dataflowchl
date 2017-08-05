@@ -46,6 +46,7 @@ Build
     ## figures/nonchlboxplot.png     create non-chlorophyll boxplot
     ## figures/chltimeseries.png     create chlorophyll time-series plot 
     ## figures/avmap.png             create average chl and phycoc maps
+    ## figures/boundaries.png        create boundaries figure
     ## tables                        create tables
     ## manuscripts/est_coast/table_2.texcreate table 2
     ## ms                            compile ms
