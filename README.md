@@ -27,6 +27,8 @@ Data
 Build
 -----
 
+Building the figures, tables, and manuscript has been streamlined with [GNU make](http://kbroman.org/minimal_make/). See the items defined as build targets by running the following line in the terminal:
+
 `$ make help`
 
     ## data                          copy data from archives
