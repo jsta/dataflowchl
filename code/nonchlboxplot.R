@@ -43,12 +43,12 @@ tdp,TDP (uM)
 po4,PO4 (uM)
 tn,TN (uM)
 np_ratio,'NP Ratio'
-c6cdom,'CDOM'", sep = ",", header = FALSE, col.names = c("variable", "variable_long"), stringsAsFactors = FALSE)
+c6cdom,'CDOM (RFU)'", sep = ",", header = FALSE, col.names = c("variable", "variable_long"), stringsAsFactors = FALSE)
 param_names[,"variable_long"] <- gsub("u", "\U03BC", param_names[,2])
 
 grabs <- merge(grabs, param_names)
 
-grabs$variable_long <- factor(grabs$variable_long, levels = c("PP (\U03BCM)", "TP (\U03BCM)", "TDP (\U03BCM)", "TN (\U03BCM)", "PO4 (\U03BCM)", "chla", "NP Ratio", "CDOM"))
+grabs$variable_long <- factor(grabs$variable_long, levels = c("PP (\U03BCM)", "TP (\U03BCM)", "TDP (\U03BCM)", "TN (\U03BCM)", "PO4 (\U03BCM)", "chla", "NP Ratio", "CDOM (RFU)"))
 
 gg <- ggplot(grabs[grabs$variable_long != "chla",], aes(x = location, y = value))
 gg <- gg + geom_boxplot(outlier.shape = NA)
