@@ -37,9 +37,9 @@ library(viridis)
 ## Full POR chl ===========================================#
 plotfull <- ggplot(data = testfull, aes(x = collection.date, 
                                         y = chl.a.ug.l, 
-                                        colour = Zone, lingtype = Zone))
-plotfull <-  plotfull + geom_line() + 
-  suppressWarnings(geom_point(size = 1.5, na.rm = TRUE))
+                                        colour = Zone))
+plotfull <-  plotfull + geom_line(alpha = 0.4) + 
+  suppressWarnings(geom_point(size = 1.5, na.rm = TRUE, alpha = 0.4))
 plotfull <-  plotfull + theme_bw() + 
   labs(x = "", y = "Chlorophyll a (ug/L)") + 
   theme(
@@ -61,7 +61,8 @@ plotsub <- ggplot(data = testsub, aes(
   y = chl.a.ug.l, 
   colour=Zone, 
   linetype = Zone))
-plotsub <- plotsub + geom_line() + suppressWarnings(geom_point(na.rm = TRUE))
+plotsub <- plotsub + geom_line(alpha = 0.4) + 
+  suppressWarnings(geom_point(na.rm = TRUE, alpha = 0.4))
 plotsub <-  plotsub + theme_bw() + 
   labs(x = "", y = "Chlorophyll a (ug/L)") + 
   theme(
