@@ -140,6 +140,10 @@ ms: data figures tables clean ## compile ms
 
 diff: manuscripts/est_coast/dataflowchl.tex ## create latexdiff pdf
 	cd manuscripts/est_coast && make diff
+
+ms_word:
+	cd manuscripts/ecss & make ms_word
+
 	
 # finalize + cleanup ###############################################
 
