@@ -19,3 +19,4 @@ data
 *.pdf
 manuscripts/Rmd
 *.aux
+reviewer_comments.md
