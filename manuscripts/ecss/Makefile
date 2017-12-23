@@ -3,5 +3,7 @@ diff: dataflowchl.tex
 	pdflatex diff.tex
 
 ms_word:
-	pandoc -s dataflowchl.tex --bibliography=dataflowchl.bib -o dataflowchl.docx
+	pandoc -s dataflowchl.tex --reference-doc=template.docx --bibliography=dataflowchl.bib -o dataflowchl.docx
 
+pdf:
+	pdflatex dataflowchl
