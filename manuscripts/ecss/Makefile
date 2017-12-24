@@ -7,3 +7,6 @@ ms_word:
 
 pdf:
 	pdflatex dataflowchl
+	-bibtex dataflowchl
+	pdflatex dataflowchl
+	pdflatex dataflowchl
