@@ -125,7 +125,7 @@ We have shown that estimates of phytoplankton abundance may be best constrained 
 
 \subsection{Phytoplankton abundance}
 
-Phytoplankton abundance is typically estimated on the basis of strictly discrete sampling within long-term monitoring networks. In the present study, we found two lines of evidence to suggest that such estimates may be affected by the fact that discrete sampling programs typically do not measure phytopigments or potential interference materials such as colored dissolved organic matter. The first line of evidence was the fact that few of our surveys retained fluorescence readings from either the primary or secondary Dataflow chlorophyll probes in the “best” model outcome of our variable selection procedure (Table 2). Some of the poor fit of chlorophyll-only fluorescence models may have been due to relatively small per-survey sample sizes or variations in the physiological condition of the phytoplankton community \citep{goldman2013estimation}. However, we did observe that phycocyanin was often an important fluorescence parameter in these instances. This finding is broadly consistent with prior observations that algal blooms in Florida Bay are primarily composed of the phycocyanin containing cyanobacteria Synechococcus \citep{phlips_blooms_1999, shangguan2017phytoplankton}. In addition, our observation that phycocyanin and chlorophyll were rarely selected in the same survey suggests that the relative abundance of cyanobacteria and other phytoplankton may be regulated by competitive exclusion \citep{passarge2006competition}. 
+Phytoplankton abundance is typically estimated on the basis of strictly discrete sampling within long-term monitoring networks. In the rare case that abundance is estimated on the basis of underway-discrete sampling chlorophyll fluorescence is often the sole covariate \citep{lane_effects_2007}. In the present study, we found two lines of evidence to suggest that such estimates may be affected by the fact that sampling programs typically do not measure phytopigments or potential interference materials such as colored dissolved organic matter. The first line of evidence was the fact that few of our surveys retained fluorescence readings from either the primary or secondary Dataflow chlorophyll probes in the “best” model outcome of our variable selection procedure (Table 2). Some of the poor fit of chlorophyll-only fluorescence models may have been due to relatively small per-survey sample sizes or variations in the physiological condition of the phytoplankton community \citep{goldman2013estimation}. However, we did observe that phycocyanin was often an important fluorescence parameter in these instances. This finding is broadly consistent with prior observations that algal blooms in Florida Bay are primarily composed of the phycocyanin containing cyanobacteria Synechococcus \citep{phlips_blooms_1999, shangguan2017phytoplankton}. In addition, our observation that phycocyanin and chlorophyll were rarely selected in the same survey suggests that the relative abundance of cyanobacteria and other phytoplankton may be regulated by competitive exclusion \citep{passarge2006competition}. 
 
 The second line of evidence is that CDOM measurements were critical in deriving accurate estimates of phytoplankton abundance (Table 2). Indeed, CDOM is known to affect the performance of optical chlorophyll probes (citation). Contrary to our expectation, we found that CDOM was an important variable only during dry season surveys when watershed exports were likely low. This was unexpected as terrestrial watershed export is known to be a primary source of CDOM (citation). In our case study, the reason that CDOM was selected as an important variable only in the dry season is unknown. One clue may be that CDOM was almost always selected in the same survey as chlorophyll fluorescence (Table 2). If CDOM promotes phytoplankton growth as demonstrated by \citet{traving2017effect}, this suggests that microbially derived CDOM from local sources may be an important component of dry season nutrient cycling.
 
@@ -139,7 +139,7 @@ An additional benefit of our approach was that it provided high resolution infor
 
 \subsection{Water quality boundaries}
 
-One of the reasons why we were able to resolve fine-scale water quality boundaries was that our IPDW interpolation approach honors barriers to flow in the landscape (i.e. prevents “bleeding” through islands and peninsulas). As a result, we were able to preserve intense water quality gradients among adjacent Florida Bay basins allowing them to be characterized and tracked over time. In particular, our mapping showed that the development of salinity boundaries was strongly associated with wet season precipitation (Figure 4, 6b). In contrast, the development of distinct chlorophyll boundaries was not associated with wet season precipitation when watershed exports are likely to be high. Rather, they were associated with the dry season following these wet periods (Figure 2, 5, 6a). The fact that we observed clear differences between the development of chlorophyll and salinity boundaries suggests that phytoplankton spatial patterns are not simply a result of watershed export but rather a more complex set of non-conservative autochthonous factors such as hydrodynamic circulation, benthic-pelagic coupling, and time lags associated with growth rates and life history \citep[Figure 6;][]{zhang_2014, lawrence2004wind}.
+One of the reasons why we were able to resolve fine-scale water quality boundaries was that our IPDW interpolation approach honors barriers to flow in the landscape (i.e. prevents “bleeding” through islands and peninsulas). We suspect that such boundary difficulties are responsible for the relative rarity of fully 2-dimensional interpolations in complex estuaries \citep{lane_effects_2007, roman2005seasonal}. As a result of our approach, we were able to preserve intense water quality gradients among adjacent Florida Bay basins allowing them to be characterized and tracked over time. In particular, our mapping showed that the development of salinity boundaries was strongly associated with wet season precipitation (Figure 4, 6b). In contrast, the development of distinct chlorophyll boundaries was not associated with wet season precipitation when watershed exports are likely to be high. Rather, they were associated with the dry season following these wet periods (Figure 2, 5, 6a). The fact that we observed clear differences between the development of chlorophyll and salinity boundaries suggests that phytoplankton spatial patterns are not simply a result of watershed export but rather a more complex set of non-conservative autochthonous factors such as hydrodynamic circulation, benthic-pelagic coupling, and time lags associated with growth rates and life history \citep[Figure 6;][]{zhang_2014, lawrence2004wind}.
 
 One explanation for our observation that chlorophyll boundaries primarily develop in the dry season is that they are simply a lagged response to prior periods of high watershed exports. However, an alternative explanation is that they develop in response to disturbance caused by periods of extremely low rainfall, high salinity, and low dissolved oxygen conditions \citep{hall2016recurrence}. Such conditions have been implicated as a cause of widespread seagrass die-off in Florida Bay \citep{borum2005potential, zieman1999seagrass}. As seagrass biomass represents one of the largest reservoirs of nutrients in Florida Bay, die-off events have the potential to cause algal blooms by releasing large amounts of nutrients from the benthos to the water column \citep{fourqurean2012carbon, zhang2004potential}. One such event occurred during the course of the present study (July 2015) with dead seagrass encompassing an area of approximately 9000 ha in central Florida Bay \citep{hall2016recurrence}. This event was similar to past die-off events in that it followed a localized severe drought that resulted in hypersaline conditions followed by die-off \citep[Figure 4;][]{robblee1991mass}. The net effects of this event on water column conditions were likely not realized by the conclusion of the present study period. We continue to monitor water column conditions throughout the lifecycle of the die-off in order to expand our understanding of extreme events and their effect on the water quality in Florida Bay.
 
@@ -278,129 +278,3 @@ Through the process of combining discrete grab sampling with spatially explicit 
 % \label{conclusion}
 
 % 	Through the process of combining discrete grab sampling with spatially explicit water quality mapping, we were able to identify several important drivers of phytoplankton abundance in Florida Bay. In particular, we found that prediction of chlorophyll concentration can by enhanced by including data on phosphorus concentrations as well as phycocyanin and CDOM fluorescence (Table 2, Figure 5, 8). Our overall mapping approach provided several distinct advantages over a strictly discrete approach. One of the advantages was that we were able to track the location and severity of water quality gradients. This approach could prove particularly useful in other estuaries located in physically complex settings with many sub-basins and barriers to flow.	Ultimately, such an approach could be used in applied settings to improve grab sampling network design, evaluate compliance with water quality standards, and measure the efficacy of Everglades restoration.
-
-% % \begin{equation}
-% % a^2+b^2=c^2
-% % \end{equation}
-
-% % For one-column wide figures use
-% % \begin{figure}
-% % Use the relevant command to insert your figure file.
-% % For example, with the graphicx package use
-%   % \includegraphics{example.eps}
-% % figure caption is below the figure
-% % \caption{Please write your figure caption here}
-% % \label{fig:1}       % Give a unique label
-% % \end{figure}
-% %
-% % For two-column wide figures use
-
-% %
-% % For tables use
-
-% %\begin{acknowledgements}
-
-% %\end{acknowledgements}
-
-% % BibTeX users please use one of
-% \bibliographystyle{spbasic}      % basic style, author-year citations
-% %\bibliographystyle{spmpsci}      % mathematics and physical sciences
-% %\bibliographystyle{spphys}       % APS-like style for physics
-% \bibliography{dataflowchl.bib}   % name your BibTeX data base
-
-% % Non-BibTeX users please use
-% % \begin{thebibliography}{}
-% %
-% % and use \bibitem to create references. Consult the Instructions
-% % for authors for reference list style.
-% %
-% % \bibitem{RefJ}
-% % Format for Journal Reference
-% % Author, Article title, Journal, Volume, page numbers (year)
-% % Format for books
-% % \bibitem{RefB}
-% % Author, Book title, page numbers. Publisher, place (year)
-% % etc
-% % \end{thebibliography}
-
-% \newpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{../../figures/fbmap.png}
-%   \caption{Locations of discrete grab sampling sites within Florida Bay, USA. Polygons represent variability in sampling location over the course of the study period. a) Underway grab sampling network (1993-2015): RL = Rankin Lake, WB = Whipray Basin, TB = Terrapin Bay, ML = Monroe Lake, 7P = Seven Palm Lake, MD = Madeira Bay, LM = Little Madeira Bay, P5 = Pond Five, JB = Joe Bay, LG = Long Sound, BW = Blackwater Sound, LS = Lake Surprise, MB = Manatee Bay, BS = Barnes Sound; b) Long-term grab sampling network (2008-2015): BB – Biscayne Bay, FBE – Florida Bay East, FBC = Florida Bay Central.}
-%   \label{fig:1}
-% \end{figure*}
-
-% \newpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{../../figures/chltimeseries.png}
-%   \caption{a, b) Time series of average chlorophyll concentration within Florida Bay water quality zones. BS = Barnes Sound, FBC = Florida Bay Central, FBE = Florida Bay East. c) Precipitation during the study period. Precipitation data shown are cumulative monthly totals composited from three gages in the Florida Bay watershed.}
-%   \label{fig:2}
-% \end{figure*}
-
-% \newpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{../../figures/chlboxplot.png}
-%   \caption{Spatial distribution of chlorophyll concentration in selected Florida Bay basins. Basins are arranged geographically from west to east. The center line of each box is the median of the data, the height of the box represents the interquartile range, and the whiskers represent the fifth and 95th percentiles. }
-%   \label{fig:3}
-% \end{figure*}
-
-% \clearpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.9\textwidth]{../../figures/multipanel_salinity.png}
-%   \caption{Salinity surfaces for which a valid chlorophyll regression model could be developed. White areas denote areas that were not covered by underway surveys.}
-%   \label{fig:5}
-% \end{figure*}
-
-% \clearpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.9\textwidth]{../../figures/multipanel.png}
-%   \caption{Chlorophyll concentration surfaces calculated using the coefficients in Table 2. Surfaces shown are those for which a valid regression model could be developed. White areas denote areas that were not covered by underway surveys. Note that the color ramp is log-scaled.}
-%   \label{fig:4}
-% \end{figure*}
-
-% \clearpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.85\textwidth]{../../figures/boundaries.png}
-%   \caption{Cumulative distribution of a) chlorophyll and b) salinity boundaries for each survey.}
-%   \label{fig:6}
-% \end{figure*}
-
-% \clearpage
-
-% \include{table_1}
-
-% \clearpage
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{../../figures/nonchlboxplot.png}
-%   \caption{Spatial distribution of discrete water quality parameters in selected Florida Bay basins.}
-%   \label{fig:7}
-% \end{figure*}
-
-% \newpage
-
-% \include{table_2}
-
-% \begin{figure*}
-%   \centering
-%   \includegraphics[width=0.65\textwidth]{../../figures/avmap.png}
-%   \caption{Maps of average chlorophyll a concentration and phycocyanin fluorescence.}
-%   \label{fig:8}
-% \end{figure*}
-
-% \end{document}
-% % end of file template.tex
-
