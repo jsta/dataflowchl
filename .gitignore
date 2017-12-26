@@ -1,7 +1,6 @@
 .Rproj.user
 .RData
 .Rhistory
-*.docx
 *.pptx
 .httr-oauth
 *.doc
