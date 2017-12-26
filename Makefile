@@ -134,7 +134,7 @@ manuscripts/est_coast/table_2.tex: tables/modelfits.csv code/prep_table-2.R ## c
 # manuscript #######################################################
 
 ms: #data figures tables clean ## compile ms
-	cd manuscripts/ecss & make pdf
+	cd manuscripts/ecss/ && make pdf
 
 diff: manuscripts/est_coast/dataflowchl.tex ## create latexdiff pdf
 	cd manuscripts/est_coast && make diff
