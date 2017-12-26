@@ -4,7 +4,7 @@ Code for *Stachelek et al. (2017)*
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.839334.svg)](https://doi.org/10.5281/zenodo.839334)
 
-**Joseph Stachelek, Christopher J. Madden, Stephen Kelly, Michelle Blaha (submitted)**. Fine-scale relationships between phytoplankton abundance and environmental drivers in Florida Bay, USA.
+**Joseph Stachelek, Christopher J. Madden, Stephen Kelly, Michelle Blaha (submitted)**. Improved estimation of phytoplankton abundance and fine-scale water quality features via simultaneous discrete and semi-continuous surveys.
 
 Dependencies
 ------------
