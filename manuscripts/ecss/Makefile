@@ -10,3 +10,5 @@ pdf:
 	-bibtex dataflowchl
 	pdflatex dataflowchl
 	pdflatex dataflowchl
+	pdflatex figures_tables
+	pdftk dataflowchl.pdf figures_tables.pdf cat output dataflowchl_full.pdf

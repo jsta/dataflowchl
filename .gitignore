@@ -6,7 +6,6 @@
 *.doc
 *.dvi
 *.log
-*.csl
 *.synctex.gz
 *.bbl
 *.blg
