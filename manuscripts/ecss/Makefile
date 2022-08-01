@@ -12,3 +12,7 @@ pdf:
 	pdflatex dataflowchl
 	pdflatex figures_tables
 	pdftk dataflowchl.pdf figures_tables.pdf cat output dataflowchl_full.pdf
+
+assemble: coversheet_eartharxiv.md
+	pandoc -s -o coversheet_eartharxiv.pdf coversheet_eartharxiv.md
+	pdftk coversheet_eartharxiv.pdf dataflowchl.pdf figures_tables.pdf cat output dataflowchl_full.pdf
