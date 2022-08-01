@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.839334.svg)](https://doi.org/10.5281/zenodo.839334)
 
-**Joseph Stachelek, Christopher J. Madden, Stephen Kelly, Michelle Blaha (submitted)**. Improved estimation of phytoplankton abundance and fine-scale water quality features via simultaneous discrete and semi-continuous surveys.
+**Jemma Stachelek, Christopher J. Madden, Stephen Kelly, Michelle Blaha (submitted)**. Improved estimation of phytoplankton abundance and fine-scale water quality features via simultaneous discrete and semi-continuous surveys.
 
 ## Dependencies
 ### R packages
@@ -30,7 +30,7 @@ knitr::kable(data.frame(packages1 = c("DataflowR", "raster", "ggplot2",
 
 ## Data
 
-**Christopher J. Madden, Joseph Stachelek, Stephen Kelly, Michelle Blaha (2017)** Florida Bay water quality estimated by underway flow-through measurement. _KNB Data Repository_. [http://dx.doi.org/10.5063/F11R6NGR](http://dx.doi.org/10.5063/F11R6NGR)
+**Christopher J. Madden, Jemma Stachelek, Stephen Kelly, Michelle Blaha (2017)** Florida Bay water quality estimated by underway flow-through measurement. _KNB Data Repository_. [http://dx.doi.org/10.5063/F11R6NGR](http://dx.doi.org/10.5063/F11R6NGR)
 
 ## Build
 
